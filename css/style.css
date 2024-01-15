@@ -157,3 +157,8 @@ section {
   align-items: center;
   gap: 4rem;
 }
+
+.pbkal {
+  display: flex;
+  flex-direction: row;
+}
