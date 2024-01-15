@@ -6,9 +6,9 @@
   --manrope: "Manrope", sans-serif;
 
   --font-size-big-title: clamp(3rem, 8vw, 6rem);
-  --font-size-heading: clamp(2.5rem, 8vw, 5rem);
-  --font-size-subheading: clamp(2rem, 3vw, 3rem);
-  --font-size-paragraph: clamp(1.2rem, 2.5vw, 1.5rem);
+  --font-size-heading: clamp(2.5rem, 8vw, 4rem);
+  --font-size-subheading: clamp(1.5rem, 3vw, 2rem);
+  --font-size-paragraph: clamp(1.2rem, 2.5vw, 1rem);
   --small-text: clamp(0.8rem, 1.5vw, 1rem);
 
   line-height: 1.5;
@@ -41,10 +41,26 @@ h1 {
   font-size: var(--font-size-big-title);
 }
 
+h2 {
+  font-size: var(--font-size-heading);
+}
+
+h3 {
+  font-size: var(--font-size-subheading);
+}
+
 h4 {
   font-family: var(--helvetica);
   font-weight: 300;
   font-size: var(--font-size-subheading);
+}
+
+p {
+  font-family: var(--manrope);
+  font-weight: 400;
+  font-size: var(--font-size-paragraph);
+  color: var(--light-color);
+
 }
 
 a {
@@ -161,4 +177,47 @@ section {
 .pbkal {
   display: flex;
   flex-direction: row;
+}
+
+.pbkal-animation {
+  width: 100%;
+}
+
+.opinion-blocks {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 2rem;
+
+}
+
+.opinion-text {
+  color: var(--orange);
+}
+
+.opinion-text {
+  width: 90%;
+}
+
+.anti-opinions, .pro-opinions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4rem;
+  margin-top: 2rem;
+}
+
+.lgv-animation {
+  width: 45%;
+}
+
+.event-content {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.events-text {
+  width: 40%;
 }
