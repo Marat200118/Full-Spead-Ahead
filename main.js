@@ -5,38 +5,56 @@ const init = () => {
   leuvenAnimation();
   hslFourAnimation();
   setupScrollTrigger();
-  dragAndDrop();
+  setupDragAndDrop();
 };
 
-const dragAndDrop = () => {
+const setupDragAndDrop = () => {
+  const draggables = document.querySelectorAll(".shapes div");
+  const dropZones = document.querySelectorAll(".drop-area div");
+  const dropZoneIds = ["france", "belgium", "germany", "netherlands", "uk"];
+  
+  dropZones.forEach((zone, index) => {
+    zone.id = "drop-" + dropZoneIds[index];
+  });
 
-    const allowDrop = (event) => {
-      event.preventDefault();
-    };
+  draggables.forEach((draggable) => {
+    draggable.addEventListener("dragstart", (event) => {
+      event.dataTransfer.setData("text", draggable.id);
+    });
+  });
 
-    const drag = (event) => {
-      event.dataTransfer.setData("text", event.target.id);
-    };
-
-    const drop = (event) => {
-      event.preventDefault();
-      var data = event.dataTransfer.getData("text");
-      event.target.appendChild(document.getElementById(data));
-    };
-
-    const shapes = document.querySelectorAll(".shapes div");
-    const targets = document.querySelectorAll(".document div");
-
-    shapes.forEach((shape) => {
-      shape.addEventListener("dragstart", drag);
+  const checkShapesPlacement = () => {
+    const allCorrect = Array.from(dropZones).every((zone, index) => {
+      const child = zone.firstChild;
+      return child && child.id === dropZoneIds[index];
     });
 
-    // Set up the drop event listeners for the targets
-    targets.forEach((target) => {
-      target.addEventListener("dragover", allowDrop);
-      target.addEventListener("drop", drop);
+    if (allCorrect) {
+      document.querySelector(".contract-button").style.display = "block";
+    }
+  };
+
+  dropZones.forEach((zone, index) => {
+    zone.addEventListener("dragover", (event) => {
+      event.preventDefault();
     });
-}
+
+    zone.addEventListener("drop", (event) => {
+      event.preventDefault();
+      const data = event.dataTransfer.getData("text");
+      const element = document.getElementById(data);
+      if (!zone.hasChildNodes()) {
+        zone.appendChild(element);
+        if (data === dropZoneIds[index]) {
+          zone.style.border = "2px solid green";
+        } else {
+          zone.style.border = "2px solid red";
+        }
+        checkShapesPlacement(); 
+      }
+    });
+  });
+};
 
 const pbkalAnimation = () => {
   lottie.loadAnimation({

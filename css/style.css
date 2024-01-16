@@ -8,7 +8,7 @@
   --font-size-big-title: clamp(3rem, 8vw, 6rem);
   --font-size-heading: clamp(2.5rem, 8vw, 48px);
   --font-size-subheading: clamp(1.5rem, 3vw, 36px);
-  --font-size-paragraph: clamp(1.2rem, 2.5vw, 1rem);
+  --font-size-paragraph: clamp(16px, 2.5vw, 20px);
   --small-text: clamp(0.8rem, 1.5vw, 1rem);
 
   line-height: 1.5;
@@ -90,7 +90,7 @@ body {
   color: #888;
 }
 
-.link {
+.button {
   border-radius: .2rem;
   border: 1px solid transparent;
   padding: 0.7em 1.3em;
@@ -134,7 +134,7 @@ section {
 .landing {
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  height: 100vh;
   /* background-image: url(../assets/Europe-continent.png);
   background-size: 70rem;
   background-repeat: no-repeat; */
@@ -184,30 +184,6 @@ section {
   width: 100%;
 }
 
-.opinion-blocks {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  gap: 2rem;
-
-}
-
-.opinion-text {
-  color: var(--orange);
-}
-
-.opinion-text {
-  width: 90%;
-}
-
-.anti-opinions, .pro-opinions {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 4rem;
-  margin-top: 2rem;
-}
-
 .lgv-animation, .leuven-animation, .hsl-4-animation {
   width: 45%;
 }
@@ -255,6 +231,7 @@ section {
 
 .document {
   background-color: var(--light-color);
+  padding: 2.5rem;
 }
 
 .document p {
@@ -262,6 +239,8 @@ section {
   font-family: var(--manrope);
   font-weight: 300;
   text-align: center;
+  max-width: 30rem;
+  margin: 0 auto;
 }
 
 .drop-area {
@@ -269,14 +248,53 @@ section {
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  margin-top: 3rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
 }
 
 .drop-area div {
   width: 100px;
   height: 100px;
   border: 2px dashed #999;
-  text-align: center;
-  line-height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   margin-right: 10px;
+  overflow: hidden; 
+  transition: border-color 0.3s;
+}
+
+.drop-area div img {
+  max-width: 100%; 
+  max-height: 100%; 
+  object-fit: contain;
+}
+
+.shapes {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around; 
+  align-items: center;
+}
+
+.shapes > div {
+  flex: 0 0 calc(33.33% - 10px); 
+  margin: 5px;
+}
+
+.shapes img {
+  width: auto;
+  height: auto;
+}
+
+.large-paragraph {
+  font-size: var(--font-size-subheading);
+  font-weight: 300;
+  color: var(--light-color);
+  width: 80%;
+  margin-top: 2rem !important;
+}
+
+.left-aligned-p {
+  text-align: left !important;
 }
