@@ -232,6 +232,17 @@ section {
 .document {
   background-color: var(--light-color);
   padding: 2.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.small-document {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+
 }
 
 .document p {
@@ -297,4 +308,23 @@ section {
 
 .left-aligned-p {
   text-align: left !important;
+}
+
+.opinion-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 3rem;
+}
+
+.right-alligned {
+  text-align: right !important;
+}
+
+.opinion-header h4 {
+  font-size: 1.5rem;
+  background-color: var(--dark-color);
+  padding: .6rem;
+  margin: .5rem;
 }
