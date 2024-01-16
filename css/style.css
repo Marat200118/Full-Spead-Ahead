@@ -6,8 +6,8 @@
   --manrope: "Manrope", sans-serif;
 
   --font-size-big-title: clamp(3rem, 8vw, 6rem);
-  --font-size-heading: clamp(2.5rem, 8vw, 4rem);
-  --font-size-subheading: clamp(1.5rem, 3vw, 2rem);
+  --font-size-heading: clamp(2.5rem, 8vw, 48px);
+  --font-size-subheading: clamp(1.5rem, 3vw, 36px);
   --font-size-paragraph: clamp(1.2rem, 2.5vw, 1rem);
   --small-text: clamp(0.8rem, 1.5vw, 1rem);
 
@@ -51,7 +51,7 @@ h3 {
 
 h4 {
   font-family: var(--helvetica);
-  font-weight: 300;
+  font-weight: 400;
   font-size: var(--font-size-subheading);
 }
 
@@ -135,14 +135,15 @@ section {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  background-image: url(../assets/Europe-continent.png);
+  /* background-image: url(../assets/Europe-continent.png);
   background-size: 70rem;
-  background-repeat: no-repeat;
-  background-position: center center;
+  background-repeat: no-repeat; */
+  /* background-position: center center; */
 }
 
 .landing-p {
   color: var(--orange);
+  font-size: var(--font-size-subheading);
 }
 
 .title {
@@ -207,7 +208,7 @@ section {
   margin-top: 2rem;
 }
 
-.lgv-animation {
+.lgv-animation, .leuven-animation, .hsl-4-animation {
   width: 45%;
 }
 
@@ -220,4 +221,62 @@ section {
 
 .events-text {
   width: 40%;
+  margin: 0 auto;
+}
+
+.event-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  color: var(--orange);
+}
+
+.events-block {
+  margin-top: 3rem;
+}
+
+.accent-year {
+  font-size: var(--font-size-heading);
+}
+
+.document-section {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 3rem;
+
+}
+
+.document-section span {
+  color: var(--orange);
+}
+
+.document {
+  background-color: var(--light-color);
+}
+
+.document p {
+  color: var(--dark-color);
+  font-family: var(--manrope);
+  font-weight: 300;
+  text-align: center;
+}
+
+.drop-area {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-top: 3rem;
+}
+
+.drop-area div {
+  width: 100px;
+  height: 100px;
+  border: 2px dashed #999;
+  text-align: center;
+  line-height: 100px;
+  margin-right: 10px;
 }

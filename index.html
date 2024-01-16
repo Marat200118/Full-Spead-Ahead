@@ -22,7 +22,7 @@
   <section class="landing">
     <h1 class="title">Full Speed</h1>
     <img class="ahead" src="assets/ahead.png" alt="ahead" />
-    <p class="landing-p">(end of the 20th – beginning of the 21st century)</p>
+    <p class="landing-p">End of the XX – beginning of the XXI century</p>
   </section>
 
   <section class="history">
@@ -34,13 +34,40 @@
       city) was discussed for the first time. The L referred to London, which would also be connected to this network
       via the
       Channel Tunnel.</h4>
-    <div class="countries">
-      <img src="assets/france.png" alt="france" />
-      <img src="assets/belgium.png" alt="belgium" />
-      <img src="assets/germany.png" alt="germany" />
-      <img src="assets/netherlands.png" alt="netherlands" />
+  </section>
+
+  <section class="document-section">
+    <div class="left-side">
+      <h2 class="document-title">Sign the document</h2>
+      <p><span>Drag and Drop</span> Countries in a right order, when ready - sign the contract</p>
+      <div class="shapes">
+        <div id="france" draggable="true" ondragstart="drag(event)">France</div>
+        <div id="belgium" draggable="true" ondragstart="drag(event)">Belgium</div>
+        <div id="germany" draggable="true" ondragstart="drag(event)">Germany</div>
+        <div id="netherlands" draggable="true" ondragstart="drag(event)">Netherlands</div>
+        <div id="uk" draggable="true" ondragstart="drag(event)">UK</div>
+      </div>
     </div>
 
+    <div class="right-side">
+      <div class="document">
+        <div class="document-header">
+          <p>The Establishment and Development of the PBKAL High-Speed Rail Network</p>
+          <p>Document Number: PBKAL1986/001</p>
+          <div class="drop-area">
+            <div ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+            <div ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+            <div ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+            <div ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+            <div ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+          </div>
+        </div>
+      </div>
+
+
+  </section>
+
+  <section class="pbkal-section">
     <div class="pbkal">
       <h1>P</h1>
       <h1>B</h1>
@@ -56,52 +83,6 @@
   <section class="opinions">
     <h2>But there were different opinions...</h2>
 
-    <div class="anti-opinions">
-      <img src="https://placehold.co/400x200" alt="anti-opinion-1" />
-      <div class="opinion-blocks">
-        <div class="opinion-block">
-          <h3>Environmental<br> Concerns</h3>
-          <p class="opinion-text">The French were in favour of a high-speed network with a maximum speed of 300 km/h.
-            The
-            Germans
-            wanted to go even faster, at 350 km/h. The Belgians and the Dutch were more cautious and wanted to start
-            with a
-            maximum speed of 250 km/h.</p>
-        </div>
-        <div class="opinion-block">
-          <h3>Regional Development Concerns</h3>
-          <p class="opinion-text">In Belgium, there was specific resistance in the Campine region against the HST. This resistance was partly due to
-          concerns about the impact on the local environment and communities</p>
-        </div>
-        <div class="opinion-block">
-          <h3>Financial<br> Costs</h3>
-          <p class="opinion-text">Critics pointed out the high costs associated with building and maintaining high-speed rail lines. The investment
-          required for such projects is substantial, leading to concerns about whether the financial benefits justify the expense.</p>
-        </div>
-      </div>
-    </div>
-
-
-    <div class="pro-opinions">
-      <img src="https://placehold.co/400x200" alt="anti-opinion-1" />
-      <div class="opinion-blocks">
-        <div class="opinion-block">
-          <h3>Economic <br>Development</h3>
-          <p class="opinion-text">Proponents argued that high-speed trains could significantly boost economic development. They improve connectivity
-          between cities, reduce travel times, and can attract businesses and tourism.</p>
-        </div>
-        <div class="opinion-block">
-          <h3>Job <br>Creation</h3>
-          <p class="opinion-text">The construction and operation of HST lines were also seen as opportunities for job creation, both directly in the
-          railway sector and indirectly in related industries.</p>
-        </div>
-        <div class="opinion-block">
-          <h3>Modernization of <br>Transport</h3>
-          <p class="opinion-text">Supporters viewed the HST as a step towards modernizing Belgium's transportation infrastructure, aligning it with other
-          leading European nations that were already investing in high-speed rail.</p>
-        </div>
-      </div>
-    </div>
   </section>
 
   <section class="events">
@@ -110,18 +91,65 @@
       <div class="events-block">
         <div class="event-header">
           <h3>Eurotunnel and (LGV Nord)</h3>
+          <h3 class="accent-year">1994</h3>
         </div>
         <div class="event-content">
           <div class="lgv-animation"></div>
-          <p class="events-text">Opened in 1994, the Eurotunnel is an engineering marvel, connecting the UK and France with the world's longest undersea
-          tunnel portion. It dramatically reduces travel time between the two countries, symbolizing a triumph of technology and
-          international cooperation.</p>
+          <p class="events-text">Opened in 1994, the Eurotunnel is an engineering marvel, connecting the UK and France
+            with the world's longest undersea
+            tunnel portion. It dramatically reduces travel time between the two countries, symbolizing a triumph of
+            technology and
+            international cooperation.<br><br>After Eurotunnel was build you can go from Paris to London in 2 hours
+          </p>
+        </div>
+      </div>
+
+      <div class="events-block">
+        <div class="event-header">
+          <h3>HSL Leuven - Liège</h3>
+          <h3 class="accent-year">2002</h3>
+        </div>
+        <div class="event-content">
+          <div class="leuven-animation"></div>
+          <p class="events-text">In 2002, a significant milestone in the development of Belgium's high-speed rail
+            network was marked with the opening of
+            the High-Speed Line (HSL) between Leuven and Liège. This line was a key part of Belgium's commitment to
+            enhancing its
+            railway infrastructure, greatly reducing travel time between these two major cities.<br><br>The
+            Leuven-Liège
+            HSL was a testament to Belgium's dedication to modernizing its transportation system, providing faster,
+            more efficient connections that catered to both the country's growing commuter base and its position in
+            the
+            broader
+            European high-speed train network.</p>
+        </div>
+      </div>
+
+      <div class="events-block">
+        <div class="event-header">
+          <h3>HSL 4, Amsterdam - Brussels</h3>
+          <h3 class="accent-year">2009</h3>
+        </div>
+        <div class="event-content">
+          <div class="hsl-4-animation"></div>
+          <p class="events-text">2009 witnessed the further expansion of Belgium's high-speed rail capabilities with
+            two
+            significant openings. The first
+            was the Chênée - Walhorn section, which included the impressive Soumagne Tunnel, known for being the
+            longest
+            railway
+            tunnel in Belgium. This section was crucial for enhancing the connectivity in the eastern part of the
+            country.
+            <br><br>The same year, the high-speed line between Antwerp and the Dutch border began operations,
+            effectively linking major
+            Belgian cities with the Netherlands. This extension not only facilitated smoother cross-border travel but
+            also
+            solidified Belgium's role in the expanding network of European high-speed rail.
+          </p>
         </div>
       </div>
     </div>
   </section>
-
-
 
 
 
