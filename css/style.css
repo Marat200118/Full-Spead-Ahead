@@ -152,7 +152,7 @@ section {
   margin-bottom: 0.5rem;
 }
 
-.ahead {
+.ahead-animation {
   width: 50rem;
 }
 
@@ -327,4 +327,16 @@ section {
   background-color: var(--dark-color);
   padding: .6rem;
   margin: .5rem;
+}
+
+#map {
+    height: 200px;
+}
+
+.map-content {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 3rem;
 }

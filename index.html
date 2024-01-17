@@ -7,21 +7,24 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Full Speed Ahead</title>
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.css" />
+
 </head>
 
 <body>
 
   <div class="header">
     <div class="logos">
-      <img src="assets/train-world-logo.webp" class="logo" alt="logo" />
-      <img src="assets/belgian-train-logo.webp" class="logo" alt="logo" />
+      <img src="/train-world-logo.webp" class="logo" alt="logo" />
+      <img src="/belgian-train-logo.webp" class="logo" alt="logo" />
     </div>
     <a href="https://www.belgiantrain.be/en" class="button">Plan your visit</a>
   </div>
 
   <section class="landing">
     <h1 class="title">Full Speed</h1>
-    <img class="ahead" src="assets/ahead.png" alt="ahead" />
+    <div class="ahead-animation"></div>
     <p class="landing-p">End of the XX – beginning of the XXI century</p>
   </section>
 
@@ -42,19 +45,19 @@
       <p><span>Drag and Drop</span> Countries in a right order, when ready - sign the contract</p>
       <div class="shapes">
         <div id="france" draggable="true">
-          <img src="assets/France.svg" alt="France" />
+          <img src="/France.svg" alt="France" />
         </div>
         <div id="belgium" draggable="true">
-          <img src="assets/Belgium.svg" alt="Belgium" />
+          <img src="/Belgium.svg" alt="Belgium" />
         </div>
         <div id="germany" draggable="true">
-          <img src="assets/Germany.svg" alt="Germany" />
+          <img src="/Germany.svg" alt="Germany" />
         </div>
         <div id="netherlands" draggable="true">
-          <img src="assets/Netherlands.svg" alt="Netherlands" />
+          <img src="/Netherlands.svg" alt="Netherlands" />
         </div>
         <div id="uk" draggable="true">
-          <img src="assets/England.svg" alt="UK" />
+          <img src="/England.svg" alt="UK" />
         </div>
       </div>
       <a href="#" class="button contract-button" style="display: none;">Sign the
@@ -230,12 +233,38 @@
     </div>
   </section>
 
+  <section class="test-yourself">
+    <h2>Test Yourself</h2>
+    <div class="map-content">
+      <div class="map" id="map">
+
+      </div>
+      <div class="route-information">
+        <div class="information-block">
+          <h3>Route Distance</h3>
+          <p>288km</p>
+        </div>
+        <div class="information-block">
+          <h3>Route Distance</h3>
+          <p>288km</p>
+        </div>
+        <div class="information-block">
+          <h3>Route Distance</h3>
+          <p>288km</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
 
 
   <script type="module" src="/main.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.7.4/lottie.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.js"></script>
+
 </body>
 
 </html>
