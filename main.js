@@ -122,48 +122,76 @@ const setupScrollTrigger = () => {
 };
 
 const map = () => {
-  var center = [-33.865, 151.2094];
-  var map = L.map("map").setView(center, 6);
+  const center = [51.332871, 12.522164];
+  const map = L.map("map").setView(center, 5);
 
   L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
     maxZoom: 18,
   }).addTo(map);
 
-  L.marker(center).addTo(map);
-
-  var editableLayers = new L.FeatureGroup();
+  const editableLayers = new L.FeatureGroup();
   map.addLayer(editableLayers);
 
-  var MyCustomMarker = L.Icon.extend({
-    options: {
-      shadowUrl: null,
-      iconAnchor: new L.Point(12, 12),
-      iconSize: new L.Point(24, 24),
-      iconUrl:
-        "https://upload.wikimedia.org/wikipedia/commons/6/6b/Information_icon4_orange.svg",
-    },
-  });
-
-  var drawPluginOptions = {
+  const drawPluginOptions = {
     position: "topright",
-    draw: {},
+    draw: {
+      polyline: {
+        shapeOptions: {
+          color: "#f357a1",
+          weight: 4,
+        },
+      },
+      // other draw options can be defined here
+    },
     edit: {
       featureGroup: editableLayers,
       remove: false,
     },
   };
 
-  var drawControl = new L.Control.Draw(drawPluginOptions);
+  const drawControl = new L.Control.Draw(drawPluginOptions);
   map.addControl(drawControl);
 
   map.on("draw:created", function (e) {
-    var type = e.layerType,
-      layer = e.layer;
-    if (type === "marker") {
-      layer.bindPopup("A popup!");
+    const type = e.layerType;
+    const layer = e.layer;
+
+    if (type === "polyline") {
+      const latlngs = layer.getLatLngs();
+      let totalLength = 0;
+      for (let i = 0; i < latlngs.length - 1; i++) {
+        totalLength += latlngs[i].distanceTo(latlngs[i + 1]);
+      }
+      const lengthInKm = totalLength / 1000;
+
+      const travelTimeHours = lengthInKm / 200;
+      const hours = Math.floor(travelTimeHours);
+      const minutes = Math.floor((travelTimeHours - hours) * 60);
+
+      const estimatedCosts = lengthInKm * 25e6;
+
+      updateRouteInformation(lengthInKm, hours, minutes, estimatedCosts);
     }
+
     editableLayers.addLayer(layer);
   });
+
+  const updateRouteInformation = (distance, hours, minutes, costs) => {
+    const distanceElem = document.querySelector(
+      ".route-information .information-block:nth-child(1) p"
+    );
+    distanceElem.textContent = `${distance.toFixed(2)} km`;
+
+    const timeElem = document.querySelector(
+      ".route-information .information-block:nth-child(2) p"
+    );
+    timeElem.textContent = `${hours} hours and ${minutes} minutes`;
+
+    const costElem = document.querySelector(
+      ".route-information .information-block:nth-child(3) p"
+    );
+    costElem.textContent = `${(costs / 1e6).toFixed(2)} million`;
+  };
 };
 
 init();

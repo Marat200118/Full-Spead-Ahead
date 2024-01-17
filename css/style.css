@@ -330,7 +330,8 @@ section {
 }
 
 #map {
-    height: 200px;
+  height: 30cqw;
+  width: 50cqw;
 }
 
 .map-content {
@@ -339,4 +340,4 @@ section {
   justify-content: space-around;
   align-items: center;
   margin-top: 3rem;
-}
+} 
