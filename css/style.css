@@ -135,10 +135,6 @@ section {
   display: flex;
   flex-direction: column;
   height: 100vh;
-  /* background-image: url(../assets/Europe-continent.png);
-  background-size: 70rem;
-  background-repeat: no-repeat; */
-  /* background-position: center center; */
 }
 
 .landing-p {
@@ -341,3 +337,70 @@ section {
   align-items: center;
   margin-top: 3rem;
 } 
+
+.test-yourself-p {
+  color: var(--dark-color);
+}
+
+.information-block p {
+  color: var(--orange);
+  font-weight: 600;
+  margin: 0;
+}
+
+.information-block {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.test-yourself {
+  background-color: var(--light-color);
+  color: var(--dark-color);
+}
+
+.big-info h3 {
+  font-weight: 300;
+  max-width: 90%;
+  margin: 0 auto;
+}
+
+.big-info h3 span {
+  font-size: var(--font-size-big-title);
+  color: var(--orange);
+}
+
+.investments h4 {
+  font-weight: 500;
+  font-size: var(--font-size-paragraph);
+  color: var(--orange);
+}
+
+.investment-img img {
+  width: 30rem;
+}
+
+.investment-item {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.investment-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 45%;
+  margin: 0 auto;
+  height: 40rem;
+  background-image: url("../assets/pattern.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.right-alligned-item {
+  flex-direction: row-reverse;
+}

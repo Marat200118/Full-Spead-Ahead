@@ -168,15 +168,24 @@ const map = () => {
       const hours = Math.floor(travelTimeHours);
       const minutes = Math.floor((travelTimeHours - hours) * 60);
 
-      const estimatedCosts = lengthInKm * 25e6;
+      const estimatedCostsInMln = lengthInKm * 25;
 
-      updateRouteInformation(lengthInKm, hours, minutes, estimatedCosts);
+      const billions = Math.floor(estimatedCostsInMln * 0.001);
+      const millions = Math.floor(estimatedCostsInMln - billions * 1000);
+
+      updateRouteInformation(lengthInKm, hours, minutes, billions, millions);
     }
 
     editableLayers.addLayer(layer);
   });
 
-  const updateRouteInformation = (distance, hours, minutes, costs) => {
+  const updateRouteInformation = (
+    distance,
+    hours,
+    minutes,
+    billions,
+    millions
+  ) => {
     const distanceElem = document.querySelector(
       ".route-information .information-block:nth-child(1) p"
     );
@@ -190,7 +199,9 @@ const map = () => {
     const costElem = document.querySelector(
       ".route-information .information-block:nth-child(3) p"
     );
-    costElem.textContent = `${(costs / 1e6).toFixed(2)} million`;
+    costElem.textContent = billions
+      ? `${billions} billions and ${millions} millions`
+      : `${millions} millions`;
   };
 };
 
