@@ -1,3 +1,5 @@
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 const init = () => {
   gsap.registerPlugin(ScrollTrigger);
   pbkalAnimation();
@@ -64,7 +66,7 @@ const pbkalAnimation = () => {
     renderer: "svg",
     loop: true,
     autoplay: true,
-    path: "animations/pbkal.json",
+    path: "assets/animations/pbkal.json",
   });
 };
 
@@ -74,7 +76,7 @@ const aheadAnimation = () => {
     renderer: "svg",
     loop: true,
     autoplay: true,
-    path: "animations/ahead.json",
+    path: "assets/animations/ahead-black.json",
   });
 };
 
@@ -84,7 +86,7 @@ const lgvAnimation = () => {
     renderer: "svg",
     loop: true,
     autoplay: true,
-    path: "animations/lgv.json",
+    path: "assets/animations/lgv.json",
   });
 };
 
@@ -94,7 +96,7 @@ const leuvenAnimation = () => {
     renderer: "svg",
     loop: true,
     autoplay: true,
-    path: "animations/leuven.json",
+    path: "assets/animations/leuven.json",
   });
 };
 
@@ -104,7 +106,7 @@ const hslFourAnimation = () => {
     renderer: "svg",
     loop: true,
     autoplay: true,
-    path: "animations/hsl4.json",
+    path: "assets/animations/hsl4.json",
   });
 };
 
@@ -141,7 +143,6 @@ const map = () => {
           weight: 4,
         },
       },
-      // other draw options can be defined here
     },
     edit: {
       featureGroup: editableLayers,
