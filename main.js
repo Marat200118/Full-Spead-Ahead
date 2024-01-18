@@ -9,6 +9,7 @@ const init = () => {
   aheadAnimation();
   setupScrollTrigger();
   setupDragAndDrop();
+  mobileAnimation();
   map();
 };
 
@@ -109,6 +110,16 @@ const hslFourAnimation = () => {
     path: "assets/animations/hsl4.json",
   });
 };
+
+const mobileAnimation = () => {
+  lottie.loadAnimation({
+    container: document.querySelector(".mobile-animation"),
+    renderer: "svg",
+    loop: true,
+    autoplay: true,
+    path: "assets/animations/pbkal.json",
+  });
+}
 
 const setupScrollTrigger = () => {
   gsap.from(".history", {
