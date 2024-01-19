@@ -237,12 +237,15 @@ const map = () => {
           weight: 4,
         },
       },
-    },
-    edit: {
-      featureGroup: editableLayers,
-      remove: false,
-    },
+      polygon: false,
+      circle: false,
+      rectangle: false,
+      marker: false,
+      circlemarker: false,
+    }
   };
+
+  
 
   const drawControl = new L.Control.Draw(drawPluginOptions);
   map.addControl(drawControl);

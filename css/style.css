@@ -365,9 +365,44 @@ section {
   padding: 1rem;
 }
 
+.investment-img {
+  max-width: 80vw;
+}
+
+.investments {
+  background-color: var(--dark-color);
+  color: var(--light-color);
+}
+
+.investment-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+}
+
+.investment-item p {
+  max-width: 40ch;
+}
 
 
+.test-yourself {
+  display: none;
+}
 
+.map {
+  width: 50vw;
+  height: 30vw;
+}
+
+.map-content {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+
+}
 
 @media (min-width: 768px) {
   .ahead-animation {
@@ -459,6 +494,26 @@ section {
     margin: 10px; 
     box-sizing: border-box;
   } */
+
+  .investment-item {
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  .investment-img {
+    max-width: 40vw;
+  }
+
+  .test-yourself {
+    display: block;
+    color: var(--dark-color);
+  }
+
+  .information-block p {
+    color: var(--orange);
+  }
+
 }
 
 @media (min-width: 1024px) {
