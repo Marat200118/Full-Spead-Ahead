@@ -1,3 +1,6 @@
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
 const init = () => {
   gsap.registerPlugin(ScrollTrigger);
   pbkalAnimation();
@@ -7,8 +10,48 @@ const init = () => {
   aheadAnimation();
   setupScrollTrigger();
   setupDragAndDrop();
+  mobileInteraction();
+  mobileAnimation();
+  setupCompanyDragAndDrop();
   map();
 };
+
+
+const setupCompanyDragAndDrop = () => {
+  if (window.innerWidth >= 768) {
+    const companyLogos = document.querySelectorAll(
+      ".company-structure .company-img img"
+    );
+    const agreementDropZones = document.querySelectorAll(
+      ".company-structure .agreement .drop-area-company div"
+    );
+
+    companyLogos.forEach((logo) => {
+      logo.setAttribute("draggable", true);
+      logo.addEventListener("dragstart", (event) => {
+        event.dataTransfer.setData("text/plain", logo.src);
+      });
+    });
+
+    agreementDropZones.forEach((zone) => {
+      zone.addEventListener("dragover", (event) => {
+        event.preventDefault();
+      });
+
+      zone.addEventListener("drop", (event) => {
+        event.preventDefault();
+        const logoSrc = event.dataTransfer.getData("text/plain");
+        zone.style.backgroundImage = `url(${logoSrc})`;
+        zone.style.backgroundSize = "contain";
+        zone.style.backgroundRepeat = "no-repeat";
+        zone.style.backgroundPosition = "center";
+      });
+    });
+  }
+};
+
+
+
 
 const setupDragAndDrop = () => {
   const draggables = document.querySelectorAll(".shapes div");
@@ -47,16 +90,59 @@ const setupDragAndDrop = () => {
       const element = document.getElementById(data);
       if (!zone.hasChildNodes()) {
         zone.appendChild(element);
-        if (data === dropZoneIds[index]) {
-          zone.style.border = "2px solid green";
-        } else {
-          zone.style.border = "2px solid red";
-        }
+        zone.style.border =
+          data === dropZoneIds[index] ? "2px solid green" : "2px solid red";
         checkShapesPlacement();
       }
     });
   });
 };
+
+const mobileInteraction = () => {
+  const mobileDraggables = document.querySelectorAll(
+    ".mobile-document-section .shapes div"
+  );
+  const mobileDropZones = document.querySelectorAll(
+    ".mobile-document-section .drop-area div"
+  );
+  const pbkalLetters = document.querySelectorAll(
+    ".mobile-document-section .pbkal h1"
+  );
+  const dropZoneIds = ["france", "belgium", "germany", "netherlands", "uk"];
+
+  mobileDraggables.forEach((draggable, index) => {
+    draggable.addEventListener("click", () => {
+      const targetZone = mobileDropZones[index];
+      if (!targetZone.hasChildNodes()) {
+        targetZone.appendChild(draggable);
+        targetZone.style.border = "2px solid green";
+        updatePbkalLetters(index, true); // Update PBKAL letters
+        checkMobileShapesPlacement();
+      }
+    });
+  });
+
+  const updatePbkalLetters = (index, isCorrect) => {
+    if (isCorrect) {
+      pbkalLetters[index].style.color = "#F37021";
+    } else {
+      pbkalLetters[index].style.color = "";
+    }
+  };
+
+  const checkMobileShapesPlacement = () => {
+    const allCorrect = Array.from(mobileDropZones).every((zone, index) => {
+      const child = zone.firstChild;
+      return child && child.id === dropZoneIds[index];
+    });
+
+    if (allCorrect) {
+      document.querySelector(".mobile-document-section .button").style.display =
+        "block";
+    }
+  };
+};
+
 
 const pbkalAnimation = () => {
   lottie.loadAnimation({
@@ -64,7 +150,7 @@ const pbkalAnimation = () => {
     renderer: "svg",
     loop: true,
     autoplay: true,
-    path: "animations/pbkal.json",
+    path: "assets/animations/pbkal.json",
   });
 };
 
@@ -74,7 +160,7 @@ const aheadAnimation = () => {
     renderer: "svg",
     loop: true,
     autoplay: true,
-    path: "animations/ahead.json",
+    path: "assets/animations/ahead-black.json",
   });
 };
 
@@ -84,7 +170,7 @@ const lgvAnimation = () => {
     renderer: "svg",
     loop: true,
     autoplay: true,
-    path: "animations/lgv.json",
+    path: "assets/animations/lgv.json",
   });
 };
 
@@ -94,7 +180,7 @@ const leuvenAnimation = () => {
     renderer: "svg",
     loop: true,
     autoplay: true,
-    path: "animations/leuven.json",
+    path: "assets/animations/leuven.json",
   });
 };
 
@@ -104,9 +190,19 @@ const hslFourAnimation = () => {
     renderer: "svg",
     loop: true,
     autoplay: true,
-    path: "animations/hsl4.json",
+    path: "assets/animations/hsl4.json",
   });
 };
+
+const mobileAnimation = () => {
+  lottie.loadAnimation({
+    container: document.querySelector(".mobile-animation"),
+    renderer: "svg",
+    loop: true,
+    autoplay: true,
+    path: "assets/animations/pbkal.json",
+  });
+}
 
 const setupScrollTrigger = () => {
   gsap.from(".history", {
@@ -141,13 +237,15 @@ const map = () => {
           weight: 4,
         },
       },
-      // other draw options can be defined here
-    },
-    edit: {
-      featureGroup: editableLayers,
-      remove: false,
-    },
+      polygon: false,
+      circle: false,
+      rectangle: false,
+      marker: false,
+      circlemarker: false,
+    }
   };
+
+  
 
   const drawControl = new L.Control.Draw(drawPluginOptions);
   map.addControl(drawControl);
