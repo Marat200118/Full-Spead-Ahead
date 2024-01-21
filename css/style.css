@@ -404,11 +404,18 @@ section {
 
 }
 
+/* * css media query  */
+
 @media (min-width: 768px) {
   .ahead-animation {
     display: block;
     width: 80%;
   }
+
+  /* .pbkal-section {
+    background-color: var(--dark-color);
+    display: block;
+  } */
 
   .title-ahead {
     display: none;
