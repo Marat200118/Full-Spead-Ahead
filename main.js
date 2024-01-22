@@ -22,7 +22,7 @@ const init = () => {
       start: "top 60%",
       end: "bottom 40%",
       scrub: true,
-      markers: true,
+      // markers: true,
     },
     color: "#222831",
     stagger: 0.05,
