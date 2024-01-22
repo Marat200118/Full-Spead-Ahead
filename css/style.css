@@ -7,7 +7,8 @@
 
   --font-size-big-title: clamp(3rem, 8vw, 6.875rem);
   --font-size-heading: clamp(2rem, 8vw, 3rem);
-  --font-size-subheading: clamp(1.5rem, 3vw, 2.25rem);
+  --font-size-subsubheading: clamp(1.7rem, 8vw, 2.25rem);
+  --font-size-subheading: clamp(1.5rem, 3vw, 2rem);
   --font-size-paragraph: clamp(1rem, 2.5vw, 1.25rem);
   --small-text: clamp(0.8rem, 1.5vw, 1rem);
 
@@ -44,7 +45,7 @@ h2 {
 }
 
 h3 {
-  font-size: var(--font-size-subheading);
+  font-size: var(--font-size-subsubheading);
 }
 
 h4 {
@@ -67,6 +68,7 @@ body {
   min-width: 320px;
   min-height: 100vh;
   background-color: var(--light-color);
+  scroll-behavior: smooth;
 }
 
 .logo {
@@ -75,7 +77,13 @@ body {
 }
 
 .title-ahead {
+  z-index: 5;
+  position: relative;
   font-size: clamp(5rem, 8vw, 6.875rem);
+}
+
+.title {
+  z-index: 5;
 }
 
 .landing h1 {
@@ -91,10 +99,6 @@ body {
 }
 
 .history h2 {
-  color: var(--dark-color);
-}
-
-.history-text {
   color: var(--dark-color);
 }
 
@@ -290,6 +294,7 @@ section {
 
 .opinion p {
   max-width: 35ch;
+  text-wrap: balance;
 }
 
 .company-structure {
@@ -402,6 +407,29 @@ section {
   justify-content: space-around;
   align-items: center;
 
+}
+
+.large-paragraph {
+  font-weight: 600 !important;
+}
+
+.letter {
+  color: #ACACAD;
+  display: inline-block;
+  font-weight: 400;
+}
+
+.mobile-animation {
+  width: clamp(15rem, 30vw, 20rem);
+  margin-top: -10rem;
+  margin-left: -3rem;
+}
+
+.landing {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 /* * css media query  */
@@ -519,6 +547,10 @@ section {
 
   .information-block p {
     color: var(--orange);
+  }
+
+  .mobile-animation {
+    display: none;
   }
 
 }

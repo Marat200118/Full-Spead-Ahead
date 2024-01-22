@@ -14,7 +14,37 @@ const init = () => {
   mobileAnimation();
   setupCompanyDragAndDrop();
   map();
+  splitText(".history-text");
+
+  gsap.to(".letter", {
+    scrollTrigger: {
+      trigger: ".history-text",
+      start: "top 60%",
+      end: "bottom 40%",
+      scrub: true,
+      markers: true,
+    },
+    color: "#222831",
+    stagger: 0.05,
+    ease: "linear",
+  });
 };
+
+const splitText = (selector) => {
+  const element = document.querySelector(selector);
+  const text = element.innerText;
+  const splitText = text
+    .split("")
+    .map((letter) => {
+      return letter === " "
+        ? "<span class='letter'>&nbsp;</span>"
+        : `<span class='letter'>${letter}</span>`;
+    })
+    .join("");
+
+  element.innerHTML = splitText;
+}
+
 
 
 const setupCompanyDragAndDrop = () => {
@@ -200,21 +230,21 @@ const mobileAnimation = () => {
     renderer: "svg",
     loop: true,
     autoplay: true,
-    path: "assets/animations/pbkal.json",
+    path: "assets/animations/mobile-animation.json",
   });
 }
 
 const setupScrollTrigger = () => {
-  gsap.from(".history", {
-    scrollTrigger: {
-      trigger: ".history",
-      start: "top bottom",
-      end: "center top",
-      scrub: true,
-    },
-    opacity: 0,
-    duration: 0.5,
-  });
+  // gsap.from(".history", {
+  //   scrollTrigger: {
+  //     trigger: ".history",
+  //     start: "top bottom",
+  //     end: "center top",
+  //     scrub: true,
+  //   },
+  //   opacity: 0,
+  //   duration: 0.5,
+  // });
 };
 
 const map = () => {
