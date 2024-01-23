@@ -1,11 +1,9 @@
 import { gsap } from "gsap";
 import lottie from "lottie-web";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { MotionPathPlugin } from "gsap/MotionPathPlugin";
 
 const init = () => {
   gsap.registerPlugin(ScrollTrigger);
-  gsap.registerPlugin(MotionPathPlugin);
   lgvAnimation();
   flagsAnimation();
   leuvenAnimation();
@@ -17,6 +15,7 @@ const init = () => {
   mobileAnimation();
   setupCompanyDragAndDrop();
   map();
+  animateEvents();
   splitText(".history-text");
 
   gsap.to(".letter", {
@@ -31,9 +30,29 @@ const init = () => {
     stagger: 0.05,
     ease: "linear",
   });
-
 };
 
+const animateEvents = () => {
+  const $events = gsap.utils.toArray(".year-and-description");
+  const $years = gsap.utils.toArray(".accent-year");
+
+  $events.forEach((event, index) => {
+    gsap.to(event, {
+      scrollTrigger: {
+        trigger: event,
+        start: "top bottom",
+        end: "bottom top",
+        scrub: true,
+        markers: true,
+      },
+      backgroundColor: "#F37021",
+      ease: "linear",
+    });
+    // gsap.to($years[index], {
+    //   color: "#EEEEEE",
+    // });
+  });
+};
 
 const splitText = (selector) => {
   const element = document.querySelector(selector);
@@ -269,14 +288,6 @@ const map = () => {
       : `${millions} millions`;
   };
 };
-
-
-
-
-
-
-
-
 
 //* Animations
 
