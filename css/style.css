@@ -46,6 +46,7 @@ h2 {
 
 h3 {
   font-size: var(--font-size-subsubheading);
+  font-weight: 400;
 }
 
 h4 {
@@ -154,7 +155,8 @@ section {
 }
 
 .document-title {
-  color: var(--orange);
+  color: var(--dark-color);
+  font-weight: 400;
 }
 
 .left-side p {
@@ -220,6 +222,24 @@ section {
   object-fit: contain;
 }
 
+.date-and-signature {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.date-and-signature p {
+  color: var(--orange);
+  font-weight: 600;
+}
+
+.document-header {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
 .pbkal {
   color: var(--dark-color);
   display: flex;
@@ -236,23 +256,29 @@ section {
   color: var(--light-color);
 }
 
-.opinions h3 {
-  color: var(--orange);
-  margin-top: 2rem;
-}
-
-.against-opinions, .pro-opinions {
-  height: 50rem;
+.opinions-container {
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  gap: 2rem;
+  flex-direction: column;
+  align-items: center;
+}
+.rails {
+  z-index: 1;
 }
 
-.opinion h4 {
-  margin-bottom: .2rem;
-  font-weight: bold;
+.opinion-card {
+  z-index: 5;
+  background-color: var(--orange);
+  border-radius: 5%;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  /* align-items: center; */
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+  max-width: 20rem;
 }
+
 
 .vector {
   margin-top: 3rem;
@@ -288,14 +314,11 @@ section {
   font-size: var(--font-size-heading);
 }
 
-.abstract {
+/* .abstract {
   width: 100%;
-}
+} */
 
-.opinion p {
-  max-width: 35ch;
-  text-wrap: balance;
-}
+
 
 .company-structure {
   color: var(--dark-color);
@@ -318,42 +341,6 @@ section {
   margin-bottom: 3rem;
 }
 
-.company {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
-  text-align: center;
-  margin-top: 3rem;
-  margin-bottom: 3rem
-}
-
-.company-documents {
-  display: none;
-}
-
-.drop-area-company {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  margin-top: 2rem;
-  margin-bottom: 2rem;
-}
-
-.drop-area-company div {
-  width: 15vw;
-  height: 15vw;
-  max-width: 4rem;
-  max-height: 4rem;
-  border: 2px dashed var(--dark-color);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-right: 10px;
-  overflow: hidden; 
-  transition: border-color 0.3s;
-}
 
 .agreement p {
   max-width: 30ch;
@@ -391,6 +378,16 @@ section {
   max-width: 40ch;
 }
 
+.flags-animation {
+  max-width: 30rem;
+}
+
+.text-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
 
 .test-yourself {
   display: none;
@@ -419,9 +416,14 @@ section {
   font-weight: 400;
 }
 
+.mobile-heading {
+  color: var(--dark-color);
+}
+
 .mobile-animation {
   width: clamp(15rem, 30vw, 20rem);
   margin-top: -10rem;
+  margin-bottom: -2rem;
   margin-left: -3rem;
 }
 
@@ -432,6 +434,10 @@ section {
   align-items: center;
 }
 
+.abstract {
+  display: none;
+}
+
 /* * css media query  */
 
 @media (min-width: 768px) {
@@ -440,18 +446,29 @@ section {
     width: 80%;
   }
 
-  /* .pbkal-section {
-    background-color: var(--dark-color);
-    display: block;
-  } */
+  section {
+    padding: 2em 4em;
+  }
 
   .title-ahead {
     display: none;
   }
 
+  .abstract {
+    display: block;
+    rotate: 180deg;
+    margin-top: -5rem;
+    margin-bottom: -5rem;
+  }
+
+  .landing {
+    display: block;
+  }
+
   .landing h1 {
     text-align: left;
   }
+
 
   .mobile-document-section {
     display: none;
@@ -465,8 +482,10 @@ section {
     background-color: var(--light-color);
     padding: 2.5rem;
     border: 1px solid var(--dark-color);
+    box-shadow: 20px 20px 15px var(--dark-color);
     display: flex;
     flex-direction: column;
+    gap: 3rem;
   }
 
   .document-section {
@@ -476,18 +495,15 @@ section {
     align-items: center;
   }
 
-  .opinions-container {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
-    margin-top: 3rem;
-    margin-bottom: 3rem;
+  .opinion-card {
+    padding: 2rem;
   }
 
-
-  .desktop-opinions {
-    display: block
+  .opinions-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
   }
 
   .event-content {
@@ -502,9 +518,9 @@ section {
     margin: 0 auto;
   }
 
-  .separator {
+  /* .separator {
     display: none;
-  }
+  } */
 
   .event-header {
     display: flex;
@@ -516,19 +532,6 @@ section {
   .company-container {
     flex-direction: row;
   }
-
-  .company-documents {
-    display: flex;
-    flex-direction: row;
-    /* flex-wrap: wrap; */
-    justify-content: space-around;
-  }
-
-  /* .agreement {
-    width: calc(50% - 1.5rem); 
-    margin: 10px; 
-    box-sizing: border-box;
-  } */
 
   .investment-item {
     flex-direction: row;
@@ -553,8 +556,42 @@ section {
     display: none;
   }
 
+
+
+
+  .carousel-container {
+    position: relative;
+    width: 300px;
+    height: 300px;
+    margin: auto;
+  }
+
+  .circle-svg {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  .carousel-item {
+    width: 50px; /* Adjust size as needed */
+    height: 50px; /* Adjust size as needed */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .carousel-item img {
+    width: 100%;
+    height: auto;
+  }
+
 }
 
 @media (min-width: 1024px) {
-
+  .text-content {
+    flex-direction: row;
+  }
 }

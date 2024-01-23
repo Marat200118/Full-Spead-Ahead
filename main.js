@@ -1,10 +1,13 @@
 import { gsap } from "gsap";
+import lottie from "lottie-web";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { MotionPathPlugin } from "gsap/MotionPathPlugin";
 
 const init = () => {
   gsap.registerPlugin(ScrollTrigger);
-  pbkalAnimation();
+  gsap.registerPlugin(MotionPathPlugin);
   lgvAnimation();
+  flagsAnimation();
   leuvenAnimation();
   hslFourAnimation();
   aheadAnimation();
@@ -28,7 +31,9 @@ const init = () => {
     stagger: 0.05,
     ease: "linear",
   });
+
 };
+
 
 const splitText = (selector) => {
   const element = document.querySelector(selector);
@@ -43,9 +48,7 @@ const splitText = (selector) => {
     .join("");
 
   element.innerHTML = splitText;
-}
-
-
+};
 
 const setupCompanyDragAndDrop = () => {
   if (window.innerWidth >= 768) {
@@ -79,9 +82,6 @@ const setupCompanyDragAndDrop = () => {
     });
   }
 };
-
-
-
 
 const setupDragAndDrop = () => {
   const draggables = document.querySelectorAll(".shapes div");
@@ -173,67 +173,6 @@ const mobileInteraction = () => {
   };
 };
 
-
-const pbkalAnimation = () => {
-  lottie.loadAnimation({
-    container: document.querySelector(".pbkal-animation"),
-    renderer: "svg",
-    loop: true,
-    autoplay: true,
-    path: "assets/animations/pbkal.json",
-  });
-};
-
-const aheadAnimation = () => {
-  lottie.loadAnimation({
-    container: document.querySelector(".ahead-animation"),
-    renderer: "svg",
-    loop: true,
-    autoplay: true,
-    path: "assets/animations/ahead-black.json",
-  });
-};
-
-const lgvAnimation = () => {
-  lottie.loadAnimation({
-    container: document.querySelector(".lgv-animation"),
-    renderer: "svg",
-    loop: true,
-    autoplay: true,
-    path: "assets/animations/lgv.json",
-  });
-};
-
-const leuvenAnimation = () => {
-  lottie.loadAnimation({
-    container: document.querySelector(".leuven-animation"),
-    renderer: "svg",
-    loop: true,
-    autoplay: true,
-    path: "assets/animations/leuven.json",
-  });
-};
-
-const hslFourAnimation = () => {
-  lottie.loadAnimation({
-    container: document.querySelector(".hsl-4-animation"),
-    renderer: "svg",
-    loop: true,
-    autoplay: true,
-    path: "assets/animations/hsl4.json",
-  });
-};
-
-const mobileAnimation = () => {
-  lottie.loadAnimation({
-    container: document.querySelector(".mobile-animation"),
-    renderer: "svg",
-    loop: true,
-    autoplay: true,
-    path: "assets/animations/mobile-animation.json",
-  });
-}
-
 const setupScrollTrigger = () => {
   // gsap.from(".history", {
   //   scrollTrigger: {
@@ -272,10 +211,8 @@ const map = () => {
       rectangle: false,
       marker: false,
       circlemarker: false,
-    }
+    },
   };
-
-  
 
   const drawControl = new L.Control.Draw(drawPluginOptions);
   map.addControl(drawControl);
@@ -331,6 +268,76 @@ const map = () => {
       ? `${billions} billions and ${millions} millions`
       : `${millions} millions`;
   };
+};
+
+
+
+
+
+
+
+
+
+//* Animations
+
+const flagsAnimation = () => {
+  lottie.loadAnimation({
+    container: document.querySelector(".flags-animation"),
+    renderer: "svg",
+    loop: true,
+    autoplay: true,
+    path: "assets/animations/flags_composition.json",
+  });
+};
+
+const aheadAnimation = () => {
+  lottie.loadAnimation({
+    container: document.querySelector(".ahead-animation"),
+    renderer: "svg",
+    loop: true,
+    autoplay: true,
+    path: "/assets/animations/ahead-black.json",
+  });
+};
+
+const lgvAnimation = () => {
+  lottie.loadAnimation({
+    container: document.querySelector(".lgv-animation"),
+    renderer: "svg",
+    loop: true,
+    autoplay: true,
+    path: "assets/animations/lgv.json",
+  });
+};
+
+const leuvenAnimation = () => {
+  lottie.loadAnimation({
+    container: document.querySelector(".leuven-animation"),
+    renderer: "svg",
+    loop: true,
+    autoplay: true,
+    path: "assets/animations/leuven.json",
+  });
+};
+
+const hslFourAnimation = () => {
+  lottie.loadAnimation({
+    container: document.querySelector(".hsl-4-animation"),
+    renderer: "svg",
+    loop: true,
+    autoplay: true,
+    path: "assets/animations/hsl4.json",
+  });
+};
+
+const mobileAnimation = () => {
+  lottie.loadAnimation({
+    container: document.querySelector(".mobile-animation"),
+    renderer: "svg",
+    loop: true,
+    autoplay: true,
+    path: "assets/animations/mobile-animation.json",
+  });
 };
 
 init();

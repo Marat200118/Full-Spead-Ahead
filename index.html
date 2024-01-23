@@ -24,6 +24,7 @@
 
   <section class="landing">
     <h1 class="title">Full Speed</h1>
+    <img src="assets/svg/abstract.svg" class="abstract" alt="abstract">
     <h1 class="title-ahead">Ahead</h1>
     <div class="ahead-animation"></div>
     <div class="mobile-animation"></div>
@@ -33,19 +34,23 @@
   <section class="history">
     <h1>1986</h1>
     <h2>High speed line history</h2>
-    <p class="history-text">At the 1986 annual conference of the Ministers of Transport for France, Germany, Belgium
-      and The Netherlands, a
-      high-speed network between Paris – Brussels - Cologne/Amsterdam, or PBKAL for short (the first letters of each
-      connected
-      city) was discussed for the first time. The L referred to London, which would also be connected to this network
-      via the
-      Channel Tunnel.</p>
+    <div class="text-content">
+      <p class="history-text">At the 1986 annual conference of the Ministers of Transport for France, Germany, Belgium
+        and The Netherlands, a
+        high-speed network between Paris – Brussels - Cologne/Amsterdam, or PBKAL for short (the first letters of each
+        connected
+        city) was discussed for the first time. The L referred to London, which would also be connected to this network
+        via the
+        Channel Tunnel.
+      </p>
+      <div class="flags-animation"></div>
+    </div>
   </section>
 
   <section class="document-section">
     <div class="left-side">
-      <h3 class="document-title">Sign the document</h3>
-      <p><span>Drag and Drop</span> Countries in a right order, when ready - sign the contract</p>
+      <h3 class="document-title">Start the historical journey - <br>Sign the Document</h3>
+      <p><span>Drag and Drop</span> Countries in a right order of <br>PBKAL document, when ready - sign the contract!</p>
       <div class="shapes">
         <div id="france" draggable="true">
           <img src="assets/svg/France.svg" alt="France" />
@@ -71,7 +76,7 @@
       <div class="document">
         <div class="document-header">
           <p class="large-paragraph">The Establishment and Development of the PBKAL High-Speed Rail Network</p>
-          <p>Document Number: PBKAL1986/001</p>
+          <!-- <p>Document Number: PBKAL1986/001</p> -->
           <div class="drop-area">
             <div></div>
             <div></div>
@@ -79,17 +84,22 @@
             <div></div>
             <div></div>
           </div>
-          <p class="left-aligned-p">To Whom It May Concern, <br><br>Subject: Comprehensive Briefing on the PBKAL
-            High-Speed Rail Network<br><br>This document serves as a formal briefing on the inception, development, and
-            operational status of the PBKAL (Paris,
-            Brussels, Cologne/Amsterdam, London) high-speed rail network, pursuant to the international cooperative
-            agreement
-            between the transport ministries of France, Germany, Belgium, the Netherlands, and the United Kingdom.</p>
+          <p class="left-aligned-p">This document is allows building PBKAL, a high-speed rail network connecting <span>Paris</span>, <span>Brussels</span>, <span>Cologne</span>, <span>Amsterdam</span>,
+          and <span>London</span>. It's the result of a collaborative effort between France, Germany, Belgium, the Netherlands, and the United
+          Kingdom. This is a unique opportunity to connect the most important cities in Europe to open the new possibilities!</p>
+            <div class="date-and-signature">
+              <p>Paris, 1986</p>
+              <p>Minister of Transport</p>
+            </div>
         </div>
       </div>
   </section>
 
   <section class="mobile-document-section">
+    <div class="mobile-heading">
+      <h3>Let's test your knowledge!</h3>
+      <p>Try to place the countries in the boxes and collect the word "PBKAL"</p>
+    </div>
     <div class="shapes">
       <div id="france" draggable="true">
         <img src="assets/svg/France.svg" alt="France" />
@@ -129,67 +139,38 @@
 
   <section class="opinions">
     <h2>But there were different opinions..</h2>
+    <!-- <img src="assets/svg/rails.svg" class="rails" alt="rails"> -->
     <div class="opinions-container">
-      <div class="opinion-chapter">
-        <h3>Against opinions</h3>
-        <div class="against-opinions">
-          <div class="vector">
-            <img src="assets/svg/against.svg" alt="against-opinions">
-          </div>
-          <div class="opinion-block">
-            <div class="opinion">
-              <h4>Environment Concerns</h4>
-              <p>A key argument against the High-Speed Train (HST) concerned its environmental impact, including significant
-                land
-                alteration, potential disruption to ecosystems, loss of wildlife habitats, and increased noise and air
-                pollution.</p>
-            </div>
-            <div class="opinion">
-              <h4>Region Development Concerns</h4>
-              <p>In Belgium, there was specific resistance in the Campine region against the HST. This resistance was partly due
-                to
-                concerns about the impact on the local environment and communities.
-              </p>
-            </div>
-            <div class="opinion">
-              <h4>Financial Costs</h4>
-              <p>Critics highlighted the substantial costs of constructing and maintaining high-speed rail lines, raising
-                questions about
-                the financial viability and return on such significant investments.
-              </p>
-            </div>
-          </div>
-        </div>
+      <img src="assets/svg/rails.svg" class="rails" alt="rails">
+      <div class="opinion-card against-opinion">
+        <h3>Environmental Concerns</h3>
+        <p>The construction of new railway lines often requires significant land alteration, which can disrupt local ecosystems,
+        lead to the loss of wildlife habitats, and increase noise and air pollution.</p>
       </div>
-      <div class="opinion-chapter">
-        <h3>Pro opinions</h3>
-        <div class="pro-opinions">
-          <div class="vector">
-            <img src="assets/svg/pro.svg" alt="pro-opinions">
-          </div>
-          <div class="opinion-block">
-            <div class="opinion">
-              <h4>Economic Development</h4>
-              <p>Proponents argued that high-speed trains could significantly boost economic development. They improve
-                connectivity
-                between cities, reduce travel times, and can attract businesses and tourism.</p>
-            </div>
-            <div class="opinion">
-              <h4>Job Creation</h4>
-              <p>The construction and operation of HST lines were also seen as opportunities for job creation, both directly in
-                the
-                railway sector and indirectly in related industries.
-              </p>
-            </div>
-            <div class="opinion">
-              <h4>Modernization of Transport</h4>
-              <p>Supporters viewed the HST as a step towards modernizing Belgium's transportation infrastructure, aligning it
-                with other
-                leading European nations that were already investing in high-speed rail.
-              </p>
-            </div>
-          </div>
-        </div>
+      <div class="opinion-card against-opinion">
+        <h3>Regional Development Concerns</h3>
+        <p>In Belgium, there was specific resistance in the Campine region against the HST. This resistance was partly due to
+        concerns about the impact on the local environment and communities</p>
+      </div>
+      <div class="opinion-card against-opinion">
+        <h3>Financial Costs</h3>
+        <p>Critics pointed out the high costs associated with building and maintaining high-speed rail lines. The investment
+        required for such projects is substantial, leading to concerns about whether the financial benefits justify the expense.</p>
+      </div>
+      <div class="opinion-card pro-opinion">
+        <h3>Economic Development</h3>
+        <p>Proponents argued that high-speed trains could significantly boost economic development. They improve connectivity
+        between cities, reduce travel times, and can attract businesses and tourism.</p>
+      </div>
+      <div class="opinion-card pro-opinion">
+        <h3>Job Creation</h3>
+        <p>The construction and operation of HST lines were also seen as opportunities for job creation, both directly in the
+        railway sector and indirectly in related industries.</p>
+      </div>
+      <div class="opinion-card pro-opinion">
+        <h3>Modernization of Transport</h3>
+        <p>Supporters viewed the HST as a step towards modernizing Belgium's transportation infrastructure, aligning it with other
+        leading European nations that were already investing in high-speed rail.</p>
       </div>
     </div>
   </section>
@@ -220,9 +201,11 @@
         </div>
         <div class="event-content">
           <div class="leuven-animation"></div>
-          <p class="events-text">In 2002, a significant milestone in the development of Belgium's high-speed rail network was marked with the opening of
-          the High-Speed Line (HSL) between Leuven and Liège. This line was a key part of Belgium's commitment to enhancing its
-          railway infrastructure, greatly reducing travel time between these two major cities.</p>
+          <p class="events-text">In 2002, a significant milestone in the development of Belgium's high-speed rail
+            network was marked with the opening of
+            the High-Speed Line (HSL) between Leuven and Liège. This line was a key part of Belgium's commitment to
+            enhancing its
+            railway infrastructure, greatly reducing travel time between these two major cities.</p>
         </div>
       </div>
       <img class="separator" src="assets/svg/separator.svg" alt="separator">
@@ -233,95 +216,38 @@
         </div>
         <div class="event-content">
           <div class="hsl-4-animation"></div>
-          <p class="events-text">2009 witnessed the further expansion of Belgium's high-speed rail capabilities with two significant openings. The first
-          was the Chênée - Walhorn section, which included the impressive Soumagne Tunnel, known for being the longest railway
-          tunnel in Belgium. This section was crucial for enhancing the connectivity in the eastern part of the country.
+          <p class="events-text">2009 witnessed the further expansion of Belgium's high-speed rail capabilities with two
+            significant openings. The first
+            was the Chênée - Walhorn section, which included the impressive Soumagne Tunnel, known for being the longest
+            railway
+            tunnel in Belgium. This section was crucial for enhancing the connectivity in the eastern part of the
+            country.
           </p>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="big-info">
-    <p>In <span>16</span> years, Belgium had become the <span>1st</span> country in Europe to achieve a complete HSL
-      network, suitable for speeds of 300
-      kilometres per hour. The investment ran to well over<br>
-      <span>5 000 000 000 $</span><br> euros - the highest since the World Expo in 1958. The money was spent not only on
-      high-speed lines,
-      but
-      also on the 3.8 km-long underground North-South link in Antwerp and on the Brussels-Midi, Antwerpen-Centraal and
-      Liège-Guillemins stations.
-    </p>
-    <img src="assets/svg/abstract.svg" class="abstract" alt="abstract">
-  </section>
-
   <section class="company-structure">
     <h2>The new face of the Belgian railways</h2>
     <h3 class="accent-year">2014 - Now</h3>
     <p>The federal parliament carried out a new restructuring in 2014, aimed at more efficient management and better
-    operational performance.</p>
+      operational performance.</p>
+  
+    <div class="carousel-container">
+      <svg class="circle-svg" viewBox="0 0 300 300">
+        <path id="circlePath" d="M 150,150 m -100,0 a 100,100 0 1,0 200,0 a 100,100 0 1,0 -200,0" fill="none" stroke="black"
+          stroke-width="2" />
+      </svg>
+      <div class="carousel">
+        <div class="carousel-item"><img src="assets/images/belgian-train-logo.webp" class="logo" alt="belgian-train-logo"></div>
+        <div class="carousel-item"><img src="assets/images/hr-rail.png" class="logo" alt="hr-rail logo"></div>
+        <div class="carousel-item"><img src="assets/images/infrabel_logo.png" class="logo" alt="infrabel_logo"></div>
 
-    <div class="company-container">
-      <div class="company">
-        <div class="company-img">
-          <img src="assets/images/hr-rail.png" class="company-img" alt="hr-rail-logo">
-        </div>
-        <div class="company-text">
-          <h3>HR-Rail</h3>
-          <p>Legal employer</p>
-        </div>
-      </div>
-      <div class="company">
-        <div class="company-img">
-          <img src="assets/images/infrabel_logo.png" class="company-img" alt="infrabel-logo">
-        </div>
-        <div class="company-text">
-          <h3>Infrabel</h3>
-          <p>Infrastructure manager</p>
-        </div>
-      </div>
-      <div class="company">
-        <div class="company-img">
-          <img src="assets/images/belgian-train-logo.webp" class="company-img" alt="belgian-train-logo">
-        </div>
-        <div class="company-text">
-          <h3>NMBS/SNCB</h3>
-          <p>Railway operator</p>
-        </div>
       </div>
     </div>
-
-    <div class="company-documents">
-      <div class="agreement">
-        <h3>Agreement</h3>
-        <div class="drop-area-company">
-          <div></div>
-        </div>
-        <p>Company will operate the passenger trains and maintains the rolling stock. It will also own all station buildings and
-        manages all the stations and stops.</p>
-        <a href="#" class="button">Sign</a>
-      </div>
-      <div class="agreement">
-        <h3>Agreement</h3>
-        <div class="drop-area-company">
-          <div></div>
-        </div>
-        <p>Company will manage and modernise the Belgian railway infrastructure and controls the train traffic. The company will
-        also be responsible for the allocation of train paths to all railway operators.</p>
-        <a href="#" class="button">Sign</a>
-      </div>
-      <div class="agreement">
-        <h3>Agreement</h3>
-        <div class="drop-area-company">
-          <div></div>
-        </div>
-        <p>Company will be responsible with offering an integrated HR service to NMBS/SNCB and Infrabel, including social
-        consultation and recruitment.</p>
-        <a href="#" class="button">Sign</a>
-      </div>
-    </div>
-
   </section>
+
 
   <section class="investments">
     <h2>Investment and modernisation</h2>
@@ -347,11 +273,13 @@
     <div class="investment-item right-alligned-item">
       <div class="investment-text">
         <h3 class="accent-year">2012</h3>
-        <p>This project, providing northern access to Zaventem (Brussels Airport), involved constructing a new railway line between
-        Mechelen and Schaerbeek, running largely along the E19 motorway and connecting to the airport through a railway
-        triangle.</p>
+        <p>This project, providing northern access to Zaventem (Brussels Airport), involved constructing a new railway
+          line between
+          Mechelen and Schaerbeek, running largely along the E19 motorway and connecting to the airport through a
+          railway
+          triangle.</p>
       </div>
-    
+
       <div class="investment-img">
         <img src="assets/images/diabolo.jpg" alt="diabolo" class="investment-img">
       </div>
@@ -386,10 +314,8 @@
     </div>
   </section>
 
-
-
   <script type="module" src="/main.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.7.4/lottie.min.js"></script>
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.7.4/lottie.min.js"></script> -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.js"></script>
 
