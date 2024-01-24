@@ -9,13 +9,15 @@ const init = () => {
   leuvenAnimation();
   hslFourAnimation();
   aheadAnimation();
-  setupScrollTrigger();
   setupDragAndDrop();
   mobileInteraction();
   mobileAnimation();
   setupCompanyDragAndDrop();
+  document.addEventListener("DOMContentLoaded", horizontalScroll);
+  window.addEventListener("resize", horizontalScroll);
   map();
   animateEvents();
+
   splitText(".history-text");
 
   gsap.to(".letter", {
@@ -32,25 +34,45 @@ const init = () => {
   });
 };
 
+const horizontalScroll = () => {
+  if (window.innerWidth > 768) {
+    gsap.to(".investment-container", {
+      x: () =>
+        -(
+          document.querySelector(".investment-container").scrollWidth -
+          document.documentElement.clientWidth
+        ) + "px",
+      ease: "none",
+      scrollTrigger: {
+        trigger: ".investments",
+        pin: true,
+        scrub: 1,
+        end: () =>
+          "+=" + document.querySelector(".investment-container").offsetWidth,
+      },
+    });
+  }
+};
+
 const animateEvents = () => {
   const $events = gsap.utils.toArray(".year-and-description");
-  const $years = gsap.utils.toArray(".accent-year");
+  const $text = gsap.utils.toArray(".events-text");
 
   $events.forEach((event, index) => {
     gsap.to(event, {
       scrollTrigger: {
         trigger: event,
         start: "top bottom",
-        end: "bottom top",
+        end: "bottom 80%",
         scrub: true,
         markers: true,
       },
-      backgroundColor: "#F37021",
+      backgroundColor: "#EEEEEE",
       ease: "linear",
     });
-    // gsap.to($years[index], {
-    //   color: "#EEEEEE",
-    // });
+    gsap.to($text[index], {
+      color: "#222831",
+    });
   });
 };
 
@@ -190,19 +212,6 @@ const mobileInteraction = () => {
         "block";
     }
   };
-};
-
-const setupScrollTrigger = () => {
-  // gsap.from(".history", {
-  //   scrollTrigger: {
-  //     trigger: ".history",
-  //     start: "top bottom",
-  //     end: "center top",
-  //     scrub: true,
-  //   },
-  //   opacity: 0,
-  //   duration: 0.5,
-  // });
 };
 
 const map = () => {
