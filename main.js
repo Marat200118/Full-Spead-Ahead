@@ -19,6 +19,7 @@ const init = () => {
   map();
   animateEvents();
   readingTextAnimation();
+  animateOpinionCards();
 }
 
 const readingTextAnimation = () => {
@@ -37,7 +38,6 @@ const readingTextAnimation = () => {
     ease: "linear",
   });
 };
-
 
 const horizontalScroll = () => {
   if (window.innerWidth > 768) {
@@ -60,26 +60,70 @@ const horizontalScroll = () => {
 };
 
 const animateEvents = () => {
-  const $events = gsap.utils.toArray(".year-and-description");
-  const $text = gsap.utils.toArray(".events-text");
+  const eventsBlocks = document.querySelectorAll(".events-block");
 
-  $events.forEach((event, index) => {
-    gsap.to(event, {
+  eventsBlocks.forEach((block) => {
+    const header = block.querySelector(".event-header");
+    const animationDiv = block.querySelector("div[class$='-animation']");
+    const yearAndDescription = block.querySelector(".year-and-description");
+
+    gsap.timeline({
+        scrollTrigger: {
+          trigger: block,
+          start: "top 80%",
+          end: "bottom 20%",
+          scrub: true,
+          // markers: true,
+        },
+      })
+      .from(header, {
+        x: -100,
+        autoAlpha: 0,
+        ease: "power2.out",
+      })
+      .from(
+        animationDiv,
+        {
+          scale: 0.5,
+          autoAlpha: 0,
+          ease: "power2.out",
+        },
+        "-=0.5"
+      )
+      .from(
+        yearAndDescription,
+        {
+          x: 100,
+          autoAlpha: 0,
+          ease: "power2.out",
+        },
+        "-=0.5"
+      );
+  });
+};
+
+const animateOpinionCards = () => {
+  const opinionCards = gsap.utils.toArray(".opinion-card");
+
+  opinionCards.forEach((card) => {
+    const animationParams = card.classList.contains("against-opinion")
+      ? { x: -200, rotation: -10, backgroundColor: "red" }
+      : { x: 200, rotation: 10, backgroundColor: "green" };
+
+    gsap.to(card, {
+      ...animationParams,
       scrollTrigger: {
-        trigger: event,
-        start: "top bottom",
-        end: "bottom 80%",
-        scrub: true,
+        trigger: card,
+        start: "top 30%",
+        toggleActions: "play none none reverse",
         markers: true,
       },
-      backgroundColor: "#EEEEEE",
-      ease: "linear",
-    });
-    gsap.to($text[index], {
-      color: "#222831",
+      ease: "power1.in",
+      onCompleteParams: [card],
     });
   });
 };
+
 
 const splitText = (selector) => {
   const element = document.querySelector(selector);

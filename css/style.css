@@ -70,6 +70,7 @@ body {
   min-height: 100vh;
   background-color: var(--light-color);
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 .logo {
@@ -256,6 +257,15 @@ section {
   color: var(--light-color);
 }
 
+.events-block {
+  margin-top: 3rem;
+}
+
+.event-header {
+  background-color: var(--orange);
+  padding: .5rem 1rem;
+}
+
 .opinions-container {
   position: relative;
   display: flex;
@@ -294,7 +304,7 @@ section {
 }
 
 .lgv-animation, .leuven-animation, .hsl-4-animation {
-  min-width: 20rem;
+  min-width: 10rem;
   max-width: 30rem;
 }
 
@@ -446,8 +456,9 @@ section {
 }
 
 .year-and-description {
-  border: 1px solid var(--orange);
-  padding: 5rem 2rem;
+  background-color: var(--light-color);
+  color: var(--dark-color);
+  padding: 1rem 2rem;
   border-radius: 1rem;
 }
 
@@ -898,6 +909,11 @@ section {
   .social:hover {
     transform: scale(1.2);
     cursor: pointer;
+  }
+
+
+  .year-and-description {
+    padding: 5rem 2rem;
   }
 }
 
