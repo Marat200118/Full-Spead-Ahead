@@ -13,11 +13,15 @@ const init = () => {
   mobileInteraction();
   mobileAnimation();
   setupCompanyDragAndDrop();
-  document.addEventListener("DOMContentLoaded", horizontalScroll);
-  window.addEventListener("resize", horizontalScroll);
+  // document.addEventListener("DOMContentLoaded", horizontalScroll);
+  // window.addEventListener("resize", horizontalScroll);
+  horizontalScroll();
   map();
   animateEvents();
+  readingTextAnimation();
+}
 
+const readingTextAnimation = () => {
   splitText(".history-text");
 
   gsap.to(".letter", {
@@ -33,6 +37,7 @@ const init = () => {
     ease: "linear",
   });
 };
+
 
 const horizontalScroll = () => {
   if (window.innerWidth > 768) {
@@ -78,16 +83,26 @@ const animateEvents = () => {
 
 const splitText = (selector) => {
   const element = document.querySelector(selector);
-  const text = element.innerText;
-  const splitText = text
-    .split("")
-    .map((letter) => {
-      return letter === " "
-        ? "<span class='letter'>&nbsp;</span>"
-        : `<span class='letter'>${letter}</span>`;
-    })
-    .join("");
+  let text = element.innerText;
+  text = text.replace(/\$/g, "<br>");
 
+  const parts = text.split(/(<br>)/g);
+  let splitText = "";
+
+  for (const part of parts) {
+    if (part === "<br>") {
+      splitText += part;
+    } else {
+      const letters = part.split("");
+      for (const letter of letters) {
+        if (letter === " ") {
+          splitText += "<span class='letter'>&nbsp;</span>";
+        } else {
+          splitText += `<span class='letter'>${letter}</span>`;
+        }
+      }
+    }
+  }
   element.innerHTML = splitText;
 };
 
