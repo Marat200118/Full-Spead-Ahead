@@ -1,19 +1,28 @@
 import { gsap } from "gsap";
+import lottie from "lottie-web";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 const init = () => {
   gsap.registerPlugin(ScrollTrigger);
-  pbkalAnimation();
   lgvAnimation();
+  flagsAnimation();
   leuvenAnimation();
   hslFourAnimation();
   aheadAnimation();
-  setupScrollTrigger();
   setupDragAndDrop();
   mobileInteraction();
   mobileAnimation();
   setupCompanyDragAndDrop();
+  // document.addEventListener("DOMContentLoaded", horizontalScroll);
+  // window.addEventListener("resize", horizontalScroll);
+  horizontalScroll();
   map();
+  animateEvents();
+  readingTextAnimation();
+  animateOpinionCards();
+}
+
+const readingTextAnimation = () => {
   splitText(".history-text");
 
   gsap.to(".letter", {
@@ -30,22 +39,116 @@ const init = () => {
   });
 };
 
+const horizontalScroll = () => {
+  if (window.innerWidth > 768) {
+    gsap.to(".investment-container", {
+      x: () =>
+        -(
+          document.querySelector(".investment-container").scrollWidth -
+          document.documentElement.clientWidth
+        ) + "px",
+      ease: "none",
+      scrollTrigger: {
+        trigger: ".investments",
+        pin: true,
+        scrub: 1,
+        end: () =>
+          "+=" + document.querySelector(".investment-container").offsetWidth,
+      },
+    });
+  }
+};
+
+const animateEvents = () => {
+  const eventsBlocks = document.querySelectorAll(".events-block");
+
+  eventsBlocks.forEach((block) => {
+    const header = block.querySelector(".event-header");
+    const animationDiv = block.querySelector("div[class$='-animation']");
+    const yearAndDescription = block.querySelector(".year-and-description");
+
+    gsap.timeline({
+        scrollTrigger: {
+          trigger: block,
+          start: "top 80%",
+          end: "bottom 20%",
+          scrub: true,
+          // markers: true,
+        },
+      })
+      .from(header, {
+        x: -100,
+        autoAlpha: 0,
+        ease: "power2.out",
+      })
+      .from(
+        animationDiv,
+        {
+          scale: 0.5,
+          autoAlpha: 0,
+          ease: "power2.out",
+        },
+        "-=0.5"
+      )
+      .from(
+        yearAndDescription,
+        {
+          x: 100,
+          autoAlpha: 0,
+          ease: "power2.out",
+        },
+        "-=0.5"
+      );
+  });
+};
+
+const animateOpinionCards = () => {
+  const opinionCards = gsap.utils.toArray(".opinion-card");
+
+  opinionCards.forEach((card) => {
+    const animationParams = card.classList.contains("against-opinion")
+      ? { x: -200, rotation: -10, backgroundColor: "red" }
+      : { x: 200, rotation: 10, backgroundColor: "green" };
+
+    gsap.to(card, {
+      ...animationParams,
+      scrollTrigger: {
+        trigger: card,
+        start: "top 30%",
+        toggleActions: "play none none reverse",
+        markers: true,
+      },
+      ease: "power1.in",
+      onCompleteParams: [card],
+    });
+  });
+};
+
+
 const splitText = (selector) => {
   const element = document.querySelector(selector);
-  const text = element.innerText;
-  const splitText = text
-    .split("")
-    .map((letter) => {
-      return letter === " "
-        ? "<span class='letter'>&nbsp;</span>"
-        : `<span class='letter'>${letter}</span>`;
-    })
-    .join("");
+  let text = element.innerText;
+  text = text.replace(/\$/g, "<br>");
 
+  const parts = text.split(/(<br>)/g);
+  let splitText = "";
+
+  for (const part of parts) {
+    if (part === "<br>") {
+      splitText += part;
+    } else {
+      const letters = part.split("");
+      for (const letter of letters) {
+        if (letter === " ") {
+          splitText += "<span class='letter'>&nbsp;</span>";
+        } else {
+          splitText += `<span class='letter'>${letter}</span>`;
+        }
+      }
+    }
+  }
   element.innerHTML = splitText;
-}
-
-
+};
 
 const setupCompanyDragAndDrop = () => {
   if (window.innerWidth >= 768) {
@@ -79,9 +182,6 @@ const setupCompanyDragAndDrop = () => {
     });
   }
 };
-
-
-
 
 const setupDragAndDrop = () => {
   const draggables = document.querySelectorAll(".shapes div");
@@ -173,80 +273,6 @@ const mobileInteraction = () => {
   };
 };
 
-
-const pbkalAnimation = () => {
-  lottie.loadAnimation({
-    container: document.querySelector(".pbkal-animation"),
-    renderer: "svg",
-    loop: true,
-    autoplay: true,
-    path: "assets/animations/pbkal.json",
-  });
-};
-
-const aheadAnimation = () => {
-  lottie.loadAnimation({
-    container: document.querySelector(".ahead-animation"),
-    renderer: "svg",
-    loop: true,
-    autoplay: true,
-    path: "assets/animations/ahead-black.json",
-  });
-};
-
-const lgvAnimation = () => {
-  lottie.loadAnimation({
-    container: document.querySelector(".lgv-animation"),
-    renderer: "svg",
-    loop: true,
-    autoplay: true,
-    path: "assets/animations/lgv.json",
-  });
-};
-
-const leuvenAnimation = () => {
-  lottie.loadAnimation({
-    container: document.querySelector(".leuven-animation"),
-    renderer: "svg",
-    loop: true,
-    autoplay: true,
-    path: "assets/animations/leuven.json",
-  });
-};
-
-const hslFourAnimation = () => {
-  lottie.loadAnimation({
-    container: document.querySelector(".hsl-4-animation"),
-    renderer: "svg",
-    loop: true,
-    autoplay: true,
-    path: "assets/animations/hsl4.json",
-  });
-};
-
-const mobileAnimation = () => {
-  lottie.loadAnimation({
-    container: document.querySelector(".mobile-animation"),
-    renderer: "svg",
-    loop: true,
-    autoplay: true,
-    path: "assets/animations/mobile-animation.json",
-  });
-}
-
-const setupScrollTrigger = () => {
-  // gsap.from(".history", {
-  //   scrollTrigger: {
-  //     trigger: ".history",
-  //     start: "top bottom",
-  //     end: "center top",
-  //     scrub: true,
-  //   },
-  //   opacity: 0,
-  //   duration: 0.5,
-  // });
-};
-
 const map = () => {
   const center = [51.332871, 12.522164];
   const map = L.map("map").setView(center, 5);
@@ -272,10 +298,8 @@ const map = () => {
       rectangle: false,
       marker: false,
       circlemarker: false,
-    }
+    },
   };
-
-  
 
   const drawControl = new L.Control.Draw(drawPluginOptions);
   map.addControl(drawControl);
@@ -331,6 +355,68 @@ const map = () => {
       ? `${billions} billions and ${millions} millions`
       : `${millions} millions`;
   };
+};
+
+//* Animations
+
+const flagsAnimation = () => {
+  lottie.loadAnimation({
+    container: document.querySelector(".flags-animation"),
+    renderer: "svg",
+    loop: true,
+    autoplay: true,
+    path: "assets/animations/flags_composition.json",
+  });
+};
+
+const aheadAnimation = () => {
+  lottie.loadAnimation({
+    container: document.querySelector(".ahead-animation"),
+    renderer: "svg",
+    loop: true,
+    autoplay: true,
+    path: "/assets/animations/ahead-black.json",
+  });
+};
+
+const lgvAnimation = () => {
+  lottie.loadAnimation({
+    container: document.querySelector(".lgv-animation"),
+    renderer: "svg",
+    loop: true,
+    autoplay: true,
+    path: "assets/animations/lgv.json",
+  });
+};
+
+const leuvenAnimation = () => {
+  lottie.loadAnimation({
+    container: document.querySelector(".leuven-animation"),
+    renderer: "svg",
+    loop: true,
+    autoplay: true,
+    path: "assets/animations/leuven.json",
+  });
+};
+
+const hslFourAnimation = () => {
+  lottie.loadAnimation({
+    container: document.querySelector(".hsl-4-animation"),
+    renderer: "svg",
+    loop: true,
+    autoplay: true,
+    path: "assets/animations/hsl4.json",
+  });
+};
+
+const mobileAnimation = () => {
+  lottie.loadAnimation({
+    container: document.querySelector(".mobile-animation"),
+    renderer: "svg",
+    loop: true,
+    autoplay: true,
+    path: "assets/animations/mobile-animation.json",
+  });
 };
 
 init();
