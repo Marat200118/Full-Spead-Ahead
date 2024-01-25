@@ -335,6 +335,7 @@ section {
 
 .company-structure p {
   max-width: 60ch;
+  margin-top: 0;
 }
 
 .company-img {
@@ -578,6 +579,21 @@ section {
   align-items: center;
 }
 
+.animation-text__line {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+}
+
+.animation-text h4 {
+  margin: 0;
+}
+
+.animation-text__line p {
+  margin-top: 0.7rem;
+  margin-bottom: 0.7rem;
+}
+
 /* * css media query  */
 
 @media (min-width: 768px) {
@@ -733,7 +749,12 @@ section {
     color: var(--dark-color);
   }
 
+  .share-button {
+    margin-top: 3rem;
+  }
+
   .information-block p {
+    margin-top: 0;
     color: var(--orange);
   }
 

@@ -194,7 +194,20 @@
           <h3>Eurotunnel and (LGV Nord)</h3>
         </div>
         <div class="event-content">
-          <div class="lgv-animation"></div>
+          <div class="animation-container">
+            <div class="lgv-animation"></div>
+            <div class="animation-text">
+              <h4>Paris - London</h4>
+              <div class="animation-text__line">
+                <img src="assets/svg/plane.svg" alt="plane" class="animation-icon">
+                <p>3:30 hours</p>
+              </div>
+              <div class="animation-text__line">
+                <img src="assets/svg/train-vector.svg" alt="train" class="animation-icon">
+                <p>2:15 hours</p>
+              </div>
+            </div>
+          </div>
           <div class="year-and-description">
             <h3 class="accent-year">1994</h3>
             <p class="events-text">Opened in 1994, the Eurotunnel is an engineering marvel, connecting the UK and France
@@ -213,7 +226,20 @@
           <h3>HSL Leuven - Liège</h3>
         </div>
         <div class="event-content">
-          <div class="leuven-animation"></div>
+          <div class="animation-container">
+            <div class="leuven-animation"></div>
+            <div class="animation-text">
+              <h4>Leuven - Liège</h4>
+              <div class="animation-text__line">
+                <img src="assets/svg/car.svg" alt="car" class="animation-icon">
+                <p>1 hour</p>
+              </div>
+              <div class="animation-text__line">
+                <img src="assets/svg/train-vector.svg" alt="train" class="animation-icon">
+                <p>0:30 minutes</p>
+              </div>
+            </div>
+          </div>
           <div class="year-and-description">
             <h3 class="accent-year">2002</h3>
             <p class="events-text">In 2002, a significant milestone in the development of Belgium's high-speed rail
@@ -232,7 +258,20 @@
           <h3>HSL 4, Amsterdam - Brussels</h3>
         </div>
         <div class="event-content">
-          <div class="hsl-4-animation"></div>
+          <div class="animation-container">
+            <div class="hsl-4-animation"></div>
+            <div class="animation-text">
+              <h4>Amsterdam - Brussels</h4>
+              <div class="animation-text__line">
+                <img src="assets/svg/car.svg" alt="car" class="animation-icon">
+                <p>2:12 hours</p>
+              </div>
+              <div class="animation-text__line">
+                <img src="assets/svg/train-vector.svg" alt="train" class="animation-icon">
+                <p>1:19 hours</p>
+              </div>
+            </div>
+          </div>
           <div class="year-and-description">
             <h3 class="accent-year">2009</h3>
             <p class="events-text">2009 witnessed the further expansion of Belgium's high-speed rail capabilities with two
@@ -336,7 +375,13 @@
           </div>
       
           <div class="investment-right">
-            <img src="assets/images/desiro.jpg" alt="desiro" class="investment-img">
+            <picture>
+              <img sizes="(max-width: 1200px) 100vw, 1200px" srcset="
+              assets/images/400.avif 400w,
+              assets/images/desiro_823.avif 823w,
+              assets/images/desiro_1139.avif 1139w,
+              assets/images/desiro_1200.avif 1200w" src="assets/images/desiro_1200.avif" alt="investment-img" class="investment-img">
+            </picture>
           </div>
         </div>
       </div>
@@ -352,6 +397,7 @@
           </div>
       
           <div class="investment-right">
+            <!-- *! MAKE IMAGE RESPONSIVE -->
             <img src="assets/images/diabolo.jpg" alt="desiro" class="investment-img">
           </div>
         </div>
@@ -370,15 +416,15 @@
       <div class="route-information">
         <div class="information-block">
           <h3>Route Distance</h3>
-          <p></p>
+          <p>Draw on map</p>
         </div>
         <div class="information-block">
           <h3>Travel time</h3>
-          <p></p>
+          <p>With average speed of 200km/h</p>
         </div>
         <div class="information-block">
           <h3>Estimated Costs</h3>
-          <p></p>
+          <p>With cost of 25 millions / km</p>
         </div>
 
         <a href="#" class="button share-button">Share</a>
