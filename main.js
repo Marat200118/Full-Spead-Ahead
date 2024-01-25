@@ -13,13 +13,12 @@ const init = () => {
   mobileInteraction();
   mobileAnimation();
   setupCompanyDragAndDrop();
-  // document.addEventListener("DOMContentLoaded", horizontalScroll);
-  // window.addEventListener("resize", horizontalScroll);
   horizontalScroll();
   map();
   animateEvents();
   readingTextAnimation();
   animateOpinionCards();
+  // animateNumbers();
 }
 
 const readingTextAnimation = () => {
@@ -40,7 +39,8 @@ const readingTextAnimation = () => {
 };
 
 const horizontalScroll = () => {
-  if (window.innerWidth > 768) {
+  const mm = gsap.matchMedia();
+  mm.add("(min-width: 768px)", () => {
     gsap.to(".investment-container", {
       x: () =>
         -(
@@ -56,10 +56,11 @@ const horizontalScroll = () => {
           "+=" + document.querySelector(".investment-container").offsetWidth,
       },
     });
-  }
+  });
 };
 
 const animateEvents = () => {
+  const mm = gsap.matchMedia();
   const eventsBlocks = document.querySelectorAll(".events-block");
 
   eventsBlocks.forEach((block) => {
@@ -67,38 +68,41 @@ const animateEvents = () => {
     const animationDiv = block.querySelector("div[class$='-animation']");
     const yearAndDescription = block.querySelector(".year-and-description");
 
-    gsap.timeline({
-        scrollTrigger: {
-          trigger: block,
-          start: "top 80%",
-          end: "bottom 20%",
-          scrub: true,
-          // markers: true,
-        },
-      })
-      .from(header, {
-        x: -100,
-        autoAlpha: 0,
-        ease: "power2.out",
-      })
-      .from(
-        animationDiv,
-        {
-          scale: 0.5,
+    mm.add("(min-width: 768px)", () => {
+      gsap
+        .timeline({
+          scrollTrigger: {
+            trigger: block,
+            start: "top 90%",
+            end: "bottom 60%",
+            scrub: true,
+            // markers: true,
+          },
+        })
+        .from(header, {
+          x: -100,
           autoAlpha: 0,
           ease: "power2.out",
-        },
-        "-=0.5"
-      )
-      .from(
-        yearAndDescription,
-        {
-          x: 100,
-          autoAlpha: 0,
-          ease: "power2.out",
-        },
-        "-=0.5"
-      );
+        })
+        .from(
+          animationDiv,
+          {
+            scale: 0.5,
+            autoAlpha: 0,
+            ease: "power2.out",
+          },
+          "-=0.5"
+        )
+        .from(
+          yearAndDescription,
+          {
+            x: 100,
+            autoAlpha: 0,
+            ease: "power2.out",
+          },
+          "-=0.5"
+        );
+    });
   });
 };
 
@@ -116,7 +120,7 @@ const animateOpinionCards = () => {
         trigger: card,
         start: "top 30%",
         toggleActions: "play none none reverse",
-        markers: true,
+        // markers: true,
       },
       ease: "power1.in",
       onCompleteParams: [card],
