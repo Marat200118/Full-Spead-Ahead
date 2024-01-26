@@ -685,6 +685,10 @@ section {
   flex-direction: column-reverse;
 }
 
+.history-text {
+  color: rgb(187, 187, 187);
+}
+
 /* * css media query  */
 
 @media (min-width: 768px) {
@@ -729,10 +733,6 @@ section {
   }
 
 
-  .mobile-document-section {
-    display: none;
-  }
-
   .history-text {
     max-width: 60ch;
   }
@@ -745,13 +745,6 @@ section {
     display: flex;
     flex-direction: column;
     gap: 3rem;
-  }
-
-  .document-section {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
   }
 
   .opinion-card {
@@ -882,6 +875,10 @@ section {
   }
 
   .mobile-animation {
+    display: none;
+  }
+
+  .document-section {
     display: none;
   }
 
@@ -1083,5 +1080,17 @@ section {
     display: flex;
     flex-direction: row;
   }
+
+  .mobile-document-section {
+    display: none;
+  }
+
+  .document-section {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
 
 }

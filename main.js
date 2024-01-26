@@ -2,6 +2,7 @@ import { gsap } from "gsap";
 import lottie from "lottie-web";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { TextPlugin } from "gsap/TextPlugin";
+import { SplitText } from "/splitText.js";
 
 const init = () => {
   gsap.registerPlugin(ScrollTrigger, TextPlugin);
@@ -17,10 +18,31 @@ const init = () => {
   horizontalScroll();
   map();
   animateEvents();
-  readingTextAnimation();
   animateOpinionCards();
   // horizontalTextScroll();
+  animateText();
 };
+
+
+const animateText = () => {
+  const text = document.querySelector(".history-text");
+
+  const splittedText = new SplitText(text);
+
+  gsap.to(splittedText.chars, {
+    scrollTrigger: {
+      trigger: text,
+      start: "top 60%",
+      end: "bottom 40%",
+      scrub: true,
+      // markers: true,
+    },
+    color: "#222831",
+    stagger: 0.05,
+    ease: "linear",
+  });
+}
+
 
 // const horizontalTextScroll = () => {
 //   gsap.to(".horizontal-scroll", {
@@ -39,23 +61,6 @@ const init = () => {
 //     },
 //   });
 // };
-
-const readingTextAnimation = () => {
-  splitText(".history-text");
-
-  gsap.to(".letter", {
-    scrollTrigger: {
-      trigger: ".history-text",
-      start: "top 60%",
-      end: "bottom 40%",
-      scrub: true,
-      // markers: true,
-    },
-    color: "#222831",
-    stagger: 0.05,
-    ease: "linear",
-  });
-};
 
 const horizontalScroll = () => {
   const mm = gsap.matchMedia();
@@ -145,31 +150,6 @@ const animateOpinionCards = () => {
       onCompleteParams: [card],
     });
   });
-};
-
-const splitText = (selector) => {
-  const element = document.querySelector(selector);
-  let text = element.innerText;
-  text = text.replace(/\$/g, "<br>");
-
-  const parts = text.split(/(<br>)/g);
-  let splitText = "";
-
-  for (const part of parts) {
-    if (part === "<br>") {
-      splitText += part;
-    } else {
-      const letters = part.split("");
-      for (const letter of letters) {
-        if (letter === " ") {
-          splitText += "<span class='letter'>&nbsp;</span>";
-        } else {
-          splitText += `<span class='letter'>${letter}</span>`;
-        }
-      }
-    }
-  }
-  element.innerHTML = splitText;
 };
 
 const setupCompanyDragAndDrop = () => {
