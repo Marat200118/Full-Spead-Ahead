@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite --host",
     "build": "vite build --base=/integration3/",
-    "preview": "vite preview"
+    "preview": "vite preview --base=/integration3/"
   },
   "devDependencies": {
     "vite": "^5.0.8"

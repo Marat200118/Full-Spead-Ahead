@@ -20,8 +20,7 @@ const init = () => {
   readingTextAnimation();
   animateOpinionCards();
   // horizontalTextScroll();
-}
-
+};
 
 // const horizontalTextScroll = () => {
 //   gsap.to(".horizontal-scroll", {
@@ -147,7 +146,6 @@ const animateOpinionCards = () => {
     });
   });
 };
-
 
 const splitText = (selector) => {
   const element = document.querySelector(selector);
@@ -399,7 +397,7 @@ const aheadAnimation = () => {
     renderer: "svg",
     loop: true,
     autoplay: true,
-    path: "/assets/animations/ahead-black.json",
+    path: "assets/animations/ahead-black.json",
   });
 };
 

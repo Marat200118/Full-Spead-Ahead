@@ -70,6 +70,9 @@ body {
   min-height: 100vh;
   background-color: var(--light-color);
   scroll-behavior: smooth;
+}
+
+.site-wrapper {
   overflow-x: hidden;
 }
 
@@ -588,6 +591,12 @@ section {
   align-items: center;
 }
 
+/* .animation-text {
+  position: absolute;
+  left: 10rem;
+  top: -2rem;
+} */
+
 .animation-text__line {
   display: flex;
   flex-direction: row;
@@ -671,11 +680,17 @@ section {
   font-size: var(--font-size-big-title) !important;
 }
 
+.animation-container {
+  display: flex;
+  flex-direction: column-reverse;
+}
+
 /* * css media query  */
 
 @media (min-width: 768px) {
 
   .ahead-animation {
+    margin-top: 2rem;
     display: block;
     width: 80%;
   }
@@ -1061,4 +1076,10 @@ section {
   .text-content {
     flex-direction: row;
   }
+
+  .animation-container {
+    display: flex;
+    flex-direction: row;
+  }
+
 }
