@@ -76,8 +76,8 @@ body {
   overflow-x: hidden;
 }
 
-.logo {
-  height: 2em;
+.header-logo {
+  height: clamp(2.5rem, 5vw, 4rem);
   padding: 0.5em;
 }
 
@@ -1069,6 +1069,8 @@ section {
   .year-and-description {
     padding: 5rem 2rem;
   }
+
+  
 }
 
 
