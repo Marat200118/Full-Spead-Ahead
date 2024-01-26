@@ -384,6 +384,9 @@ section {
   align-items: center;
   margin-top: 3rem;
   margin-bottom: 3rem;
+  background-image: url("../assets/svg/rails-horizontal.svg");
+  background-repeat: repeat-x;
+  background-size: 20rem;
 }
 
 .investment-item p {
@@ -469,6 +472,7 @@ section {
   max-width: 60ch;
   margin: 0 auto;
 }
+
 
 .animated-digit {
   font-size: clamp(2rem, 8vw, 4rem);
@@ -663,6 +667,10 @@ section {
 
 }
 
+.material-symbols-outlined {
+  font-size: var(--font-size-big-title) !important;
+}
+
 /* * css media query  */
 
 @media (min-width: 768px) {
@@ -780,6 +788,29 @@ section {
     flex-shrink: 0; 
   }
 
+  .investment-item:first-of-type {
+    width: 60vw;
+    align-items: baseline;
+  }
+
+  .investment-item:first-of-type h3 {
+    display: flex;
+    align-items: center;
+    animation: bouncing 2s infinite ease-in-out;
+  }
+
+  @keyframes bouncing {
+    25% {
+      transform: translateX(0);
+    }
+    75% {
+      transform: translateX(3rem);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+
   .investment-left, .investment-right {
     width: 50%;
   }
@@ -793,7 +824,7 @@ section {
     color: var(--orange);
     text-align: left;
   }
-  
+
   .stories-links p {
     margin-top: 0;
   }

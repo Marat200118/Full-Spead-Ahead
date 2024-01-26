@@ -1,9 +1,10 @@
 import { gsap } from "gsap";
 import lottie from "lottie-web";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { TextPlugin } from "gsap/TextPlugin";
 
 const init = () => {
-  gsap.registerPlugin(ScrollTrigger);
+  gsap.registerPlugin(ScrollTrigger, TextPlugin);
   lgvAnimation();
   flagsAnimation();
   leuvenAnimation();
@@ -18,8 +19,27 @@ const init = () => {
   animateEvents();
   readingTextAnimation();
   animateOpinionCards();
-  // animateNumbers();
+  // horizontalTextScroll();
 }
+
+
+// const horizontalTextScroll = () => {
+//   gsap.to(".horizontal-scroll", {
+//     x: () =>
+//       -(
+//         document.querySelector(".horizontal-scroll").scrollWidth -
+//         window.innerWidth
+//       ) + "px",
+//     ease: "none",
+//     scrollTrigger: {
+//       trigger: ".text-section",
+//       pin: true,
+//       scrub: 1,
+//       end: () =>
+//         "+=" + document.querySelector(".horizontal-scroll").offsetWidth,
+//     },
+//   });
+// };
 
 const readingTextAnimation = () => {
   splitText(".history-text");
