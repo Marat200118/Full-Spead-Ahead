@@ -14,14 +14,14 @@ const init = () => {
   setupDragAndDrop();
   mobileInteraction();
   mobileAnimation();
-  setupCompanyDragAndDrop();
   InvestmentAnimation();
   map();
   animateEvents();
   animateOpinionCards();
-  // horizontalTextScroll();
   animateText();
+  animateCompanyStructure();
 };
+
 
 const animateText = () => {
   const text = document.querySelector(".history-text");
@@ -42,23 +42,69 @@ const animateText = () => {
   });
 };
 
-// const horizontalTextScroll = () => {
-//   gsap.to(".horizontal-scroll", {
-//     x: () =>
-//       -(
-//         document.querySelector(".horizontal-scroll").scrollWidth -
-//         window.innerWidth
-//       ) + "px",
-//     ease: "none",
-//     scrollTrigger: {
-//       trigger: ".text-section",
-//       pin: true,
-//       scrub: 1,
-//       end: () =>
-//         "+=" + document.querySelector(".horizontal-scroll").offsetWidth,
-//     },
-//   });
-// };
+const animateCompanyStructure = () => {
+  const mm = gsap.matchMedia();
+  mm.add("(max-width: 767px)", () => {
+    gsap.utils.toArray(".carousel-item").forEach((item) => {
+      const logo = item.querySelector("img");
+      const heading = item.querySelector("h3");
+      const desc = item.querySelector(".company-desc");
+      const listItems = item.querySelectorAll(".company-list p");
+
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: item,
+          start: "top 80%",
+          end: "bottom top",
+          toggleActions: "play none none reverse",
+          markers: true,
+        },
+      });
+
+      tl.from(logo, {
+        duration: 0.3,
+        autoAlpha: 0,
+        y: 30,
+        ease: "power1.out",
+      });
+
+      tl.from(
+        heading,
+        {
+          duration: 0.3,
+          autoAlpha: 0,
+          y: 30,
+          ease: "power1.out",
+        },
+        "-=0.3"
+      );
+
+      tl.from(
+        desc,
+        {
+          duration: 0.6,
+          autoAlpha: 0,
+          y: 20,
+          ease: "power1.out",
+        },
+        "-=0.3"
+      );
+
+      listItems.forEach((item, index) => {
+        tl.from(
+          item,
+          {
+            duration: 0.6,
+            autoAlpha: 0,
+            y: 20,
+            ease: "power1.out",
+          },
+          `-=${0.5 - index * 0.1}`
+        );
+      });
+    });
+  });
+};
 
 const InvestmentAnimation = () => {
   const mm = gsap.matchMedia();
@@ -79,28 +125,43 @@ const InvestmentAnimation = () => {
       },
     });
   });
-
   mm.add("(max-width: 767px)", () => {
     gsap.utils.toArray(".investment-item").forEach((item, index) => {
       const year = item.querySelector(".accent-year");
       const title = item.querySelector(".project-heading");
       const content = item.querySelector(".investment-left");
-      const image = item.querySelector(".investment-img");
+      const image = item.querySelector(".investment-right img");
 
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: item,
-          start: "top 80%",
+          start: "top 50%",
           end: "bottom top",
           toggleActions: "play none none reverse",
-          markers: true,
+          // markers: true,
         },
       });
 
-      tl.from(year, { x: -100, autoAlpha: 0, ease: "power2.out" }, 0)
-        .from(title, { x: 100, autoAlpha: 0, ease: "power2.out" }, "-=0.5")
-        .from(content, { y: 50, autoAlpha: 0, ease: "back.out(1.7)" }, "-=0.5")
-        .from(image, { scale: 0.8, autoAlpha: 0, ease: "elastic.out(1, 0.3)" }, "-=0.5");
+      tl.from(year, { x: -100, autoAlpha: 0, ease: "power2.out" }, 0).from(
+        title,
+        { x: 100, autoAlpha: 0, ease: "power2.out" },
+        "-=0.5"
+      );
+
+      if (content) {
+        tl.from(
+          content,
+          { y: 50, autoAlpha: 0, ease: "back.out(1.7)" },
+          "-=0.5"
+        );
+      }
+      if (image) {
+        tl.from(
+          image,
+          { scale: 0.8, autoAlpha: 0, ease: "elastic.out(1, 0.3)" },
+          "-=0.5"
+        );
+      }
     });
   });
 };
@@ -127,6 +188,11 @@ const animateEvents = () => {
           },
         })
         .from(header, {
+          x: -100,
+          autoAlpha: 0,
+          ease: "power2.out",
+        })
+        .from(animationText, {
           x: -100,
           autoAlpha: 0,
           ease: "power2.out",
@@ -158,7 +224,7 @@ const animateEvents = () => {
             start: "top bottom",
             end: "bottom bottom",
             scrub: true,
-            markers: true,
+            // markers: true,
           },
         })
         .from(header, {
@@ -209,43 +275,10 @@ const animateOpinionCards = () => {
         toggleActions: "play none none reverse",
         // markers: true,
       },
-      ease: "power1.in",
+      ease: "power2.in",
       onCompleteParams: [card],
     });
   });
-};
-
-const setupCompanyDragAndDrop = () => {
-  if (window.innerWidth >= 768) {
-    const companyLogos = document.querySelectorAll(
-      ".company-structure .company-img img"
-    );
-    const agreementDropZones = document.querySelectorAll(
-      ".company-structure .agreement .drop-area-company div"
-    );
-
-    companyLogos.forEach((logo) => {
-      logo.setAttribute("draggable", true);
-      logo.addEventListener("dragstart", (event) => {
-        event.dataTransfer.setData("text/plain", logo.src);
-      });
-    });
-
-    agreementDropZones.forEach((zone) => {
-      zone.addEventListener("dragover", (event) => {
-        event.preventDefault();
-      });
-
-      zone.addEventListener("drop", (event) => {
-        event.preventDefault();
-        const logoSrc = event.dataTransfer.getData("text/plain");
-        zone.style.backgroundImage = `url(${logoSrc})`;
-        zone.style.backgroundSize = "contain";
-        zone.style.backgroundRepeat = "no-repeat";
-        zone.style.backgroundPosition = "center";
-      });
-    });
-  }
 };
 
 const setupDragAndDrop = () => {
@@ -311,7 +344,7 @@ const mobileInteraction = () => {
       if (!targetZone.hasChildNodes()) {
         targetZone.appendChild(draggable);
         targetZone.style.border = "2px solid green";
-        updatePbkalLetters(index, true); // Update PBKAL letters
+        updatePbkalLetters(index, true);
         checkMobileShapesPlacement();
       }
     });

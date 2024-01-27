@@ -472,11 +472,17 @@ section {
   border-radius: 1rem;
 }
 
-.big-text-section {
+.text-section {
+  text-align: center;
   font-size: var(--font-size-paragraph);
   color: var(--dark-color);
   max-width: 60ch;
   margin: 0 auto;
+}
+
+.text-section p {
+  margin-top: 1.2rem;
+  margin-bottom: 1.2rem;
 }
 
 
@@ -657,6 +663,10 @@ section {
   margin-bottom: 4rem;
 }
 
+.abstract-text-section {
+  rotate: 180deg;
+}
+
 .radio {
   display: none;
 }
@@ -766,11 +776,15 @@ section {
     gap: 3rem;
   }
 
-  .opinions__rails {
+  /* .opinions__rails {
     position: absolute;
     z-index: 1;
     bottom: 0;
     top: 4rem;
+  } */
+
+  .investment-left p {
+    max-width: clamp(45ch, 50vw, 50ch);
   }
 
   .opinion-card {
@@ -887,6 +901,7 @@ section {
     background-color: var(--light-color);
     color: var(--dark-color);
     padding: 3rem;
+    height: 60vh;
   }
 
   .test-yourself {
