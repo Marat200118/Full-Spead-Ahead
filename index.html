@@ -37,7 +37,10 @@
       <h1>1986</h1>
       <h2>High speed line history</h2>
       <div class="text-content">
-        <p class="history-text">At the 1986 annual conference of the Ministers of Transport for France, Germany, Belgium and The Netherlands, a high-speed network between Paris – Brussels - Cologne/Amsterdam, or PBKAL for short (the first letters of each connected city) was discussed for the first time. The L referred to London, which would also be connected to this network via the Channel Tunnel.
+        <p class="history-text">At the 1986 annual conference of the Ministers of Transport for France, Germany, Belgium
+          and The Netherlands, a high-speed network between Paris – Brussels - Cologne/Amsterdam, or PBKAL for short
+          (the first letters of each connected city) was discussed for the first time. The L referred to London, which
+          would also be connected to this network via the Channel Tunnel.
         </p>
         <div class="flags-animation"></div>
       </div>
@@ -196,13 +199,15 @@
               <div class="lgv-animation"></div>
               <div class="animation-text">
                 <h4>Paris - London</h4>
-                <div class="animation-text__line">
-                  <img src="assets/svg/plane.svg" alt="plane" class="animation-icon">
-                  <p>3:30 hours</p>
-                </div>
-                <div class="animation-text__line">
-                  <img src="assets/svg/train-vector.svg" alt="train" class="animation-icon">
-                  <p>2:15 hours</p>
+                <div class="animation-text__line-block">
+                  <div class="animation-text__line">
+                    <img src="assets/svg/plane.svg" alt="plane" class="animation-icon">
+                    <p>3:30 hours</p>
+                  </div>
+                  <div class="animation-text__line">
+                    <img src="assets/svg/train-vector.svg" alt="train" class="animation-icon">
+                    <p>2:15 hours</p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -229,13 +234,15 @@
               <div class="leuven-animation"></div>
               <div class="animation-text">
                 <h4>Leuven - Liège</h4>
-                <div class="animation-text__line">
-                  <img src="assets/svg/car.svg" alt="car" class="animation-icon">
-                  <p>1 hour</p>
-                </div>
-                <div class="animation-text__line">
-                  <img src="assets/svg/train-vector.svg" alt="train" class="animation-icon">
-                  <p>0:30 minutes</p>
+                <div class="animation-text__line-block">
+                  <div class="animation-text__line">
+                    <img src="assets/svg/car.svg" alt="car" class="animation-icon">
+                    <p>1 hour</p>
+                  </div>
+                  <div class="animation-text__line">
+                    <img src="assets/svg/train-vector.svg" alt="train" class="animation-icon">
+                    <p>0:30 minutes</p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -261,13 +268,15 @@
               <div class="hsl-4-animation"></div>
               <div class="animation-text">
                 <h4>Amsterdam - Brussels</h4>
-                <div class="animation-text__line">
-                  <img src="assets/svg/car.svg" alt="car" class="animation-icon">
-                  <p>2:12 hours</p>
-                </div>
-                <div class="animation-text__line">
-                  <img src="assets/svg/train-vector.svg" alt="train" class="animation-icon">
-                  <p>1:19 hours</p>
+                <div class="animation-text__line-block">
+                  <div class="animation-text__line">
+                    <img src="assets/svg/car.svg" alt="car" class="animation-icon">
+                    <p>2:12 hours</p>
+                  </div>
+                  <div class="animation-text__line">
+                    <img src="assets/svg/train-vector.svg" alt="train" class="animation-icon">
+                    <p>1:19 hours</p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -403,13 +412,18 @@
             </div>
 
             <div class="investment-right">
-              <picture>
-                <img sizes="(max-width: 1200px) 100vw, 1200px" srcset="
-                assets/images/400.avif 400w,
-                assets/images/desiro_823.avif 823w,
-                assets/images/desiro_1139.avif 1139w,
-                assets/images/desiro_1200.avif 1200w" src="assets/images/desiro_1200.avif" alt="investment-img"
-                  class="investment-img">
+              <picture class="investment-img">
+                <source srcset="
+                  ./assets/images/desiro/desiro_400.avif  400w,
+                  ./assets/images/desiro/desiro_823.avif  823w,
+                  ./assets/images/desiro/desiro_1200.avif  1200w,
+                    " type="image/avif">
+                <source srcset="
+                  ./assets/images/desiro/desiro_400.webp  400w,
+                  ./assets/images/desiro/desiro_823.webp  823w,
+                  ./assets/images/desiro/desiro_1201.webp  1201w,
+                    " type="image/webp">
+                <img class="investment-img" src="./assets/images/desiro/desiro.jpg" alt="Desiro main line">
               </picture>
             </div>
           </div>
@@ -428,8 +442,19 @@
             </div>
 
             <div class="investment-right">
-              <!-- *! MAKE IMAGE RESPONSIVE -->
-              <img src="assets/images/diabolo.jpg" alt="desiro" class="investment-img">
+              <picture class="investment-img">
+                <source srcset="
+                  ./assets/images/diabolo/diabolo_400.avif  400w,
+                  ./assets/images/diabolo/diabolo_764.avif  764w,
+                  ./assets/images/diabolo/diabolo_1200.avif  1200w,
+                  " type="image/avif">
+                <source srcset="
+                  ./assets/images/diabolo/diabolo_400.webp  400w,
+                  ./assets/images/diabolo/diabolo_764.webp  764w,
+                  ./assets/images/diabolo/diabolo_1200.webp  1200w,
+                  " type="image/webp">
+                <img class="investment-img" src="./assets/images/diabolo/diabolo.jpg" alt="The Diabolo Project">
+              </picture>
             </div>
           </div>
         </div>
@@ -446,7 +471,19 @@
                 on December 13, 2015, it aims to enhance the suburban transport network.</p>
             </div>
             <div class="investment-right">
-              <img src="assets/images/Rer.png" alt="RER Suburban Network" class="investment-img">
+              <picture class="investment-img">
+                <source srcset="
+                  ./assets/images/rer/Rer_400.avif  400w,
+                  ./assets/images/rer/Rer_738.avif  738w,
+                  ./assets/images/rer/Rer_1200.avif  1200w,
+                    " type="image/avif">
+                <source srcset="
+                  ./assets/images/rer/Rer_400.webp  400w,
+                  ./assets/images/rer/Rer_854.webp  854w,
+                  ./assets/images/rer/Rer_1200.webp  1200w,
+                    " type="image/webp">
+                <img class="investment-img" src="./assets/images/rer/Rer.png" alt="The Rer project">
+              </picture>
             </div>
           </div>
         </div>
@@ -463,7 +500,19 @@
                 systems and enhanced comfort.</p>
             </div>
             <div class="investment-right">
-              <img src="assets/images/m7.jpeg" alt="M7 Carriages" class="investment-img">
+              <picture class="investment-img">
+                <source srcset="
+                  ./assets/images/m7/m7_400.avif  400w,
+                  ./assets/images/m7/m7_831.avif  831w,
+                  ./assets/images/m7/m7_1200.avif  1200w,
+                    " type="image/avif">
+                <source srcset="
+                  ./assets/images/m7/m7_400.webp  400w,
+                  ./assets/images/m7/m7_727.webp  727w,
+                  ./assets/images/m7/m7_1200.webp  1200w,
+                    " type="image/webp">
+                <img class="investment-img" src="./assets/images/m7/m7.jpeg" alt="M7 carriages">
+              </picture>
             </div>
           </div>
         </div>
