@@ -275,13 +275,11 @@ section {
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-
-.opinions__rails {
-  position: absolute;
-  z-index: 1;
-  /* top: -5rem;
-  bottom: 5rem; */
+  background-image: url("../assets/svg/rails.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  margin-top: 3rem;
 }
 
 
