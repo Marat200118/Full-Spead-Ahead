@@ -2,6 +2,7 @@ import { gsap } from "gsap";
 import lottie from "lottie-web";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { TextPlugin } from "gsap/TextPlugin";
+import { SplitText } from "/splitText.js";
 
 const init = () => {
   gsap.registerPlugin(ScrollTrigger, TextPlugin);
@@ -14,12 +15,31 @@ const init = () => {
   mobileInteraction();
   mobileAnimation();
   setupCompanyDragAndDrop();
-  horizontalScroll();
+  InvestmentAnimation();
   map();
   animateEvents();
-  readingTextAnimation();
   animateOpinionCards();
   // horizontalTextScroll();
+  animateText();
+};
+
+const animateText = () => {
+  const text = document.querySelector(".history-text");
+
+  const splittedText = new SplitText(text);
+
+  gsap.to(splittedText.chars, {
+    scrollTrigger: {
+      trigger: text,
+      start: "top 60%",
+      end: "bottom 40%",
+      scrub: true,
+      // markers: true,
+    },
+    color: "#222831",
+    stagger: 0.05,
+    ease: "linear",
+  });
 };
 
 // const horizontalTextScroll = () => {
@@ -40,24 +60,7 @@ const init = () => {
 //   });
 // };
 
-const readingTextAnimation = () => {
-  splitText(".history-text");
-
-  gsap.to(".letter", {
-    scrollTrigger: {
-      trigger: ".history-text",
-      start: "top 60%",
-      end: "bottom 40%",
-      scrub: true,
-      // markers: true,
-    },
-    color: "#222831",
-    stagger: 0.05,
-    ease: "linear",
-  });
-};
-
-const horizontalScroll = () => {
+const InvestmentAnimation = () => {
   const mm = gsap.matchMedia();
   mm.add("(min-width: 768px)", () => {
     gsap.to(".investment-container", {
@@ -76,6 +79,30 @@ const horizontalScroll = () => {
       },
     });
   });
+
+  mm.add("(max-width: 767px)", () => {
+    gsap.utils.toArray(".investment-item").forEach((item, index) => {
+      const year = item.querySelector(".accent-year");
+      const title = item.querySelector(".project-heading");
+      const content = item.querySelector(".investment-left");
+      const image = item.querySelector(".investment-img");
+
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: item,
+          start: "top 80%",
+          end: "bottom top",
+          toggleActions: "play none none reverse",
+          markers: true,
+        },
+      });
+
+      tl.from(year, { x: -100, autoAlpha: 0, ease: "power2.out" }, 0)
+        .from(title, { x: 100, autoAlpha: 0, ease: "power2.out" }, "-=0.5")
+        .from(content, { y: 50, autoAlpha: 0, ease: "back.out(1.7)" }, "-=0.5")
+        .from(image, { scale: 0.8, autoAlpha: 0, ease: "elastic.out(1, 0.3)" }, "-=0.5");
+    });
+  });
 };
 
 const animateEvents = () => {
@@ -85,6 +112,7 @@ const animateEvents = () => {
   eventsBlocks.forEach((block) => {
     const header = block.querySelector(".event-header");
     const animationDiv = block.querySelector("div[class$='-animation']");
+    const animationText = block.querySelector(".animation-text");
     const yearAndDescription = block.querySelector(".year-and-description");
 
     mm.add("(min-width: 768px)", () => {
@@ -122,6 +150,46 @@ const animateEvents = () => {
           "-=0.5"
         );
     });
+    mm.add("(max-width: 767px)", () => {
+      gsap
+        .timeline({
+          scrollTrigger: {
+            trigger: block,
+            start: "top bottom",
+            end: "bottom bottom",
+            scrub: true,
+            markers: true,
+          },
+        })
+        .from(header, {
+          x: -100,
+          autoAlpha: 0,
+          ease: "power2.out",
+        })
+        .from(animationText, {
+          x: -100,
+          autoAlpha: 0,
+          ease: "power2.out",
+        })
+        .from(
+          animationDiv,
+          {
+            scale: 0.5,
+            autoAlpha: 0,
+            ease: "power2.out",
+          },
+          "-=0.5"
+        )
+        .from(
+          yearAndDescription,
+          {
+            y: 100,
+            autoAlpha: 0,
+            ease: "power2.out",
+          },
+          "-=0.5"
+        );
+    });
   });
 };
 
@@ -145,31 +213,6 @@ const animateOpinionCards = () => {
       onCompleteParams: [card],
     });
   });
-};
-
-const splitText = (selector) => {
-  const element = document.querySelector(selector);
-  let text = element.innerText;
-  text = text.replace(/\$/g, "<br>");
-
-  const parts = text.split(/(<br>)/g);
-  let splitText = "";
-
-  for (const part of parts) {
-    if (part === "<br>") {
-      splitText += part;
-    } else {
-      const letters = part.split("");
-      for (const letter of letters) {
-        if (letter === " ") {
-          splitText += "<span class='letter'>&nbsp;</span>";
-        } else {
-          splitText += `<span class='letter'>${letter}</span>`;
-        }
-      }
-    }
-  }
-  element.innerHTML = splitText;
 };
 
 const setupCompanyDragAndDrop = () => {

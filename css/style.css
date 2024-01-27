@@ -76,8 +76,8 @@ body {
   overflow-x: hidden;
 }
 
-.logo {
-  height: 2em;
+.header-logo {
+  height: clamp(2.5rem, 5vw, 4rem);
   padding: 0.5em;
 }
 
@@ -267,6 +267,7 @@ section {
 .event-header {
   background-color: var(--orange);
   padding: .5rem 1rem;
+  border-radius: 0.5rem;
 }
 
 .opinions-container {
@@ -274,11 +275,13 @@ section {
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-image: url("../assets/svg/rails.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  margin-top: 3rem;
 }
-.opinions__rails {
-  position: absolute;
-  z-index: 1;
-}
+
 
 .opinion-card {
   z-index: 5;
@@ -387,13 +390,13 @@ section {
   align-items: center;
   margin-top: 3rem;
   margin-bottom: 3rem;
-  background-image: url("../assets/svg/rails-horizontal.svg");
+  /* background-image: url("../assets/svg/rails-horizontal.svg");
   background-repeat: repeat-x;
-  background-size: 20rem;
+  background-size: 20rem; */
 }
 
 .investment-item p {
-  max-width: 40ch;
+  max-width: 60ch;
 }
 
 .flags-animation {
@@ -465,7 +468,7 @@ section {
 .year-and-description {
   background-color: var(--light-color);
   color: var(--dark-color);
-  padding: 1rem 2rem;
+  padding: 1rem 1.5rem;
   border-radius: 1rem;
 }
 
@@ -597,10 +600,31 @@ section {
   top: -2rem;
 } */
 
+.animation-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 1rem;
+  gap: 2rem;
+}
+
 .animation-text__line {
   display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.animation-text__line-block {
+  display: flex;
   flex-direction: row;
-  gap: 2rem;
+  align-items: center;
+  gap: 1rem;;
+}
+
+.animation-icon {
+  width: clamp(1rem, 10vw, 2rem);
+  height: auto;
 }
 
 .animation-text h4 {
@@ -677,12 +701,16 @@ section {
 }
 
 .material-symbols-outlined {
-  font-size: var(--font-size-big-title) !important;
+  display: none !important;
 }
 
 .animation-container {
   display: flex;
   flex-direction: column-reverse;
+}
+
+.history-text {
+  color: rgb(187, 187, 187);
 }
 
 /* * css media query  */
@@ -703,15 +731,6 @@ section {
     display: none;
   }
 
-  .events-block {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 3rem;
-    height: 100vh;
-  }
-
   .abstract {
     width: 100%;
     display: block;
@@ -728,9 +747,9 @@ section {
     text-align: left;
   }
 
-
-  .mobile-document-section {
-    display: none;
+  .material-symbols-outlined {
+    display: block !important;
+    font-size: var(--font-size-big-title) !important;
   }
 
   .history-text {
@@ -747,11 +766,11 @@ section {
     gap: 3rem;
   }
 
-  .document-section {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
+  .opinions__rails {
+    position: absolute;
+    z-index: 1;
+    bottom: 0;
+    top: 4rem;
   }
 
   .opinion-card {
@@ -765,13 +784,13 @@ section {
     align-items: center;
   }
 
-  .event-content {
+  /* .event-content {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
     width: 100cqw;
     align-items: center;
-  }
+  } */
 
   .events-text {
     max-width: 50ch;
@@ -801,6 +820,9 @@ section {
     align-items: center;
     width: 100vw;
     flex-shrink: 0; 
+    background-image: url("../assets/svg/rails-horizontal.svg");
+    background-repeat: repeat-x;
+    background-size: 20rem;
   }
 
   .investment-item:first-of-type {
@@ -882,6 +904,10 @@ section {
   }
 
   .mobile-animation {
+    display: none;
+  }
+
+  .document-section {
     display: none;
   }
 
@@ -1068,7 +1094,34 @@ section {
 
   .year-and-description {
     padding: 5rem 2rem;
+  } 
+
+  .animation-container {
+    flex-direction: row-reverse;
+    justify-content: space-around;
   }
+
+  .animation-text__line {
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 2rem;
+  }
+
+  .animation-text__line-block {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+  }
+
+  .animation-text {
+    justify-content: center;
+    /* margin-top: 3rem; */
+  }
+  
+
+
+
+
 }
 
 
@@ -1079,7 +1132,34 @@ section {
 
   .animation-container {
     display: flex;
-    flex-direction: row;
+    flex-direction: column-reverse;
   }
+
+  .mobile-document-section {
+    display: none;
+  }
+
+  .document-section {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .event-content {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 3rem;
+  }
+
+  /* .events-block {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 3rem;
+    height: 100vh;
+  } */
+
 
 }
