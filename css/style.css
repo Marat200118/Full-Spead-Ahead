@@ -121,6 +121,7 @@ body {
 
 .button {
   border-radius: .2rem;
+  text-align: center;
   border: 1px solid transparent;
   padding: 0.7em 1.3em;
   font-size: 1em;
@@ -129,7 +130,29 @@ body {
   color: var(--light-color);
   background-color: var(--orange);
   cursor: pointer;
+  max-width: 9rem;
   transition: all 0.25s;
+}
+
+.opinion-symbol {
+  opacity: 0;
+  /* display: block !important; */
+}
+
+.info-with-btn {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: flex-start;
+  margin-top: 2rem;
+
+}
+
+.opinion-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 }
 
 section {
@@ -231,6 +254,7 @@ section {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  gap: 2rem;
 }
 
 .date-and-signature p {
@@ -241,7 +265,8 @@ section {
 .document-header {
   display: flex;
   flex-direction: column;
-  gap: 3rem;
+  align-items: center;
+  gap: 2rem;
 }
 
 .pbkal {
@@ -249,10 +274,6 @@ section {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-}
-
-.pbkal-section {
-  display: none;
 }
 
 .opinions, .events {
@@ -323,6 +344,10 @@ section {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.visible {
+  display: block !important;
 }
 
 .big-info p {
@@ -411,21 +436,27 @@ section {
 }
 
 .test-yourself {
-  display: none;
-}
-
-.map {
-  width: 50vw;
-  height: 30vw;
+  /* display: none; */
+  color: var(--dark-color);
 }
 
 .map-content {
   display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  align-items: center;
-
+  flex-direction: column;
 }
+
+
+.information-block p {
+  margin-top: 0;
+  color: var(--orange);
+  font-weight: bold;
+}
+
+.map {
+  width: 100%;
+  height: 85vw;
+}
+
 
 .large-paragraph {
   font-weight: 600 !important;
@@ -472,11 +503,17 @@ section {
   border-radius: 1rem;
 }
 
-.big-text-section {
+.text-section {
+  text-align: center;
   font-size: var(--font-size-paragraph);
   color: var(--dark-color);
   max-width: 60ch;
   margin: 0 auto;
+}
+
+.text-section p {
+  margin-top: 1.2rem;
+  margin-bottom: 1.2rem;
 }
 
 
@@ -536,7 +573,6 @@ section {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  padding: 2rem;
 }
 
 .practicals {
@@ -657,6 +693,10 @@ section {
   margin-bottom: 4rem;
 }
 
+.abstract-text-section {
+  rotate: 180deg;
+}
+
 .radio {
   display: none;
 }
@@ -686,10 +726,6 @@ section {
   height: auto;
 }
 
-.test-yourself-mobile {
-  color: var(--dark-color);
-}
-
 .mobile-map-content .route {
   text-align: center;
 }
@@ -697,7 +733,6 @@ section {
 .route {
   margin-top: 2rem;
   margin-bottom: 2rem;
-
 }
 
 .material-symbols-outlined {
@@ -739,6 +774,16 @@ section {
     margin-bottom: -5rem;
   }
 
+  .contract-button {
+    display: none;
+  }
+
+  .map {
+    width: 50vw;
+    /* width: clamp(30rem, 50vw, 60rem); */
+    height: 40vw;
+  }
+
   .landing {
     display: block;
   }
@@ -766,11 +811,15 @@ section {
     gap: 3rem;
   }
 
-  .opinions__rails {
+  /* .opinions__rails {
     position: absolute;
     z-index: 1;
     bottom: 0;
     top: 4rem;
+  } */
+
+  .investment-left p {
+    max-width: clamp(45ch, 50vw, 50ch);
   }
 
   .opinion-card {
@@ -882,25 +931,18 @@ section {
   .invetment-flex {
     display: flex;
     flex-direction: row;
+    gap: 1rem;
     justify-content: space-around;
     align-items: center;
     background-color: var(--light-color);
     color: var(--dark-color);
     padding: 3rem;
+    height: 60vh;
   }
 
   .test-yourself {
     display: block;
     color: var(--dark-color);
-  }
-
-  .share-button {
-    margin-top: 3rem;
-  }
-
-  .information-block p {
-    margin-top: 0;
-    color: var(--orange);
   }
 
   .mobile-animation {
@@ -919,6 +961,8 @@ section {
     width: 30rem;
     height: 30rem;
     margin: auto;
+    margin-top: 5rem;
+    margin-bottom: 3rem;
   }
 
   .circle-container {
@@ -1088,10 +1132,6 @@ section {
     cursor: pointer;
   }
 
-  .test-yourself-mobile {
-    display: none;
-  }
-
   .year-and-description {
     padding: 5rem 2rem;
   } 
@@ -1111,13 +1151,16 @@ section {
     flex-direction: column;
     align-items: flex-start;
     gap: 0;
-  }
+  } 
 
   .animation-text {
     justify-content: center;
     /* margin-top: 3rem; */
   }
   
+  .signature-animation {
+    width: 50%;
+  }
 
 
 
@@ -1152,6 +1195,19 @@ section {
     margin-top: 3rem;
   }
 
+  .map-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  .share-button {
+    margin-top: 3rem;
+  }
+
+
+
   /* .events-block {
     display: flex;
     flex-direction: column;
@@ -1160,6 +1216,33 @@ section {
     gap: 3rem;
     height: 100vh;
   } */
+}
+
+@media (min-width: 1201px) {
+  .investment-img {
+    max-width: 40vw;
+  }
+
+  .ahead-animation {
+    margin-top: 0;
+    width: 80%;
+  }
+}
 
 
+@media (min-width: 1440px) {
+  .investment-img {
+    max-width: 25vw;
+  }
+
+  .event-content {
+    justify-content: space-evenly;
+  }
+
+}
+
+@media (min-width: 1440px) {
+  .investment-img {
+    max-width: 35vw;
+  }
 }

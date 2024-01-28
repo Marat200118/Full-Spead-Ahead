@@ -14,13 +14,57 @@ const init = () => {
   setupDragAndDrop();
   mobileInteraction();
   mobileAnimation();
-  setupCompanyDragAndDrop();
   InvestmentAnimation();
   map();
   animateEvents();
   animateOpinionCards();
-  // horizontalTextScroll();
   animateText();
+  animateCompanyStructure();
+  animateTextSection();
+  animateTestYourselfSection();
+  animateFinalSection();
+};
+
+const animateTextSection = () => {
+  const textSection = document.querySelector(".text-section");
+  const sentences = textSection.querySelectorAll("p");
+  const animatedDigits = textSection.querySelectorAll(".animated-digit");
+
+  // Animate each sentence
+  sentences.forEach((sentence, index) => {
+    gsap.from(sentence, {
+      scrollTrigger: {
+        trigger: sentence,
+        start: "top bottom",
+        end: "bottom top",
+        toggleActions: "play none none reverse",
+        // markers: true,
+      },
+      opacity: 0,
+      y: 20,
+      duration: 1,
+      ease: "power2.out",
+      delay: index * 0.3, // Stagger the start time of each sentence
+    });
+  });
+
+  // Animate numbers
+  animatedDigits.forEach((digit) => {
+    const endValue = parseInt(digit.textContent.replace(/\s/g, ""), 10);
+    gsap.from(digit, {
+      scrollTrigger: {
+        trigger: digit,
+        start: "top 70%",
+        toggleActions: "play none none reverse",
+        // markers: true,
+      },
+      duration: 2,
+      text: endValue,
+      ease: "power3.inOut",
+      snap: { textContent: 1 },
+      stagger: 0.5,
+    });
+  });
 };
 
 const animateText = () => {
@@ -42,23 +86,69 @@ const animateText = () => {
   });
 };
 
-// const horizontalTextScroll = () => {
-//   gsap.to(".horizontal-scroll", {
-//     x: () =>
-//       -(
-//         document.querySelector(".horizontal-scroll").scrollWidth -
-//         window.innerWidth
-//       ) + "px",
-//     ease: "none",
-//     scrollTrigger: {
-//       trigger: ".text-section",
-//       pin: true,
-//       scrub: 1,
-//       end: () =>
-//         "+=" + document.querySelector(".horizontal-scroll").offsetWidth,
-//     },
-//   });
-// };
+const animateCompanyStructure = () => {
+  const mm = gsap.matchMedia();
+  mm.add("(max-width: 767px)", () => {
+    gsap.utils.toArray(".carousel-item").forEach((item) => {
+      const logo = item.querySelector("img");
+      const heading = item.querySelector("h3");
+      const desc = item.querySelector(".company-desc");
+      const listItems = item.querySelectorAll(".company-list p");
+
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: item,
+          start: "top 80%",
+          end: "bottom top",
+          toggleActions: "play none none reverse",
+          // markers: true,
+        },
+      });
+
+      tl.from(logo, {
+        duration: 0.3,
+        autoAlpha: 0,
+        y: 30,
+        ease: "power1.out",
+      });
+
+      tl.from(
+        heading,
+        {
+          duration: 0.3,
+          autoAlpha: 0,
+          y: 30,
+          ease: "power1.out",
+        },
+        "-=0.3"
+      );
+
+      tl.from(
+        desc,
+        {
+          duration: 0.6,
+          autoAlpha: 0,
+          y: 20,
+          ease: "power1.out",
+        },
+        "-=0.3"
+      );
+
+      listItems.forEach((item, index) => {
+        tl.from(
+          item,
+          {
+            duration: 0.6,
+            autoAlpha: 0,
+            y: 20,
+            ease: "power1.out",
+          },
+          `-=${0.5 - index * 0.1}`
+        );
+      });
+    });
+  });
+};
 
 const InvestmentAnimation = () => {
   const mm = gsap.matchMedia();
@@ -79,28 +169,43 @@ const InvestmentAnimation = () => {
       },
     });
   });
-
   mm.add("(max-width: 767px)", () => {
     gsap.utils.toArray(".investment-item").forEach((item, index) => {
       const year = item.querySelector(".accent-year");
       const title = item.querySelector(".project-heading");
       const content = item.querySelector(".investment-left");
-      const image = item.querySelector(".investment-img");
+      const image = item.querySelector(".investment-right img");
 
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: item,
-          start: "top 80%",
+          start: "top 50%",
           end: "bottom top",
           toggleActions: "play none none reverse",
-          markers: true,
+          // markers: true,
         },
       });
 
-      tl.from(year, { x: -100, autoAlpha: 0, ease: "power2.out" }, 0)
-        .from(title, { x: 100, autoAlpha: 0, ease: "power2.out" }, "-=0.5")
-        .from(content, { y: 50, autoAlpha: 0, ease: "back.out(1.7)" }, "-=0.5")
-        .from(image, { scale: 0.8, autoAlpha: 0, ease: "elastic.out(1, 0.3)" }, "-=0.5");
+      tl.from(year, { x: -100, autoAlpha: 0, ease: "power2.out" }, 0).from(
+        title,
+        { x: 100, autoAlpha: 0, ease: "power2.out" },
+        "-=0.5"
+      );
+
+      if (content) {
+        tl.from(
+          content,
+          { y: 50, autoAlpha: 0, ease: "back.out(1.7)" },
+          "-=0.5"
+        );
+      }
+      if (image) {
+        tl.from(
+          image,
+          { scale: 0.8, autoAlpha: 0, ease: "elastic.out(1, 0.3)" },
+          "-=0.5"
+        );
+      }
     });
   });
 };
@@ -121,12 +226,17 @@ const animateEvents = () => {
           scrollTrigger: {
             trigger: block,
             start: "top 90%",
-            end: "bottom 60%",
+            end: "bottom 70%",
             scrub: true,
             // markers: true,
           },
         })
         .from(header, {
+          x: -100,
+          autoAlpha: 0,
+          ease: "power2.out",
+        })
+        .from(animationText, {
           x: -100,
           autoAlpha: 0,
           ease: "power2.out",
@@ -158,7 +268,7 @@ const animateEvents = () => {
             start: "top bottom",
             end: "bottom bottom",
             scrub: true,
-            markers: true,
+            // markers: true,
           },
         })
         .from(header, {
@@ -195,67 +305,170 @@ const animateEvents = () => {
 
 const animateOpinionCards = () => {
   const opinionCards = gsap.utils.toArray(".opinion-card");
+  const symbols = gsap.utils.toArray(".opinion-symbol");
 
-  opinionCards.forEach((card) => {
+  opinionCards.forEach((card, index) => {
     const animationParams = card.classList.contains("against-opinion")
       ? { x: -200, rotation: -10, backgroundColor: "red" }
       : { x: 200, rotation: 10, backgroundColor: "green" };
 
-    gsap.to(card, {
-      ...animationParams,
+    const symbol = symbols[index];
+
+    const tl = gsap.timeline({
       scrollTrigger: {
         trigger: card,
-        start: "top 30%",
+        start: "top 20%",
         toggleActions: "play none none reverse",
         // markers: true,
       },
-      ease: "power1.in",
-      onCompleteParams: [card],
     });
+
+    tl.to(card, {
+      ...animationParams,
+      ease: "power2.in",
+    }).to(
+      symbol,
+      {
+        opacity: 1,
+        duration: 0.5,
+        ease: "power2.in",
+      },
+      "<"
+    ); // "<" means this animation will start at the same time as the previous one
   });
 };
 
-const setupCompanyDragAndDrop = () => {
-  if (window.innerWidth >= 768) {
-    const companyLogos = document.querySelectorAll(
-      ".company-structure .company-img img"
-    );
-    const agreementDropZones = document.querySelectorAll(
-      ".company-structure .agreement .drop-area-company div"
-    );
+const animateTestYourselfSection = () => {
+  const testYourselfSection = document.querySelector(".test-yourself");
+  const title = testYourselfSection.querySelector("h2");
+  const paragraph = testYourselfSection.querySelector(".test-yourself-p");
+  const map = testYourselfSection.querySelector(".map");
+  const infoBlocks = testYourselfSection.querySelectorAll(".information-block");
+  const shareButton = testYourselfSection.querySelector(".share-button");
 
-    companyLogos.forEach((logo) => {
-      logo.setAttribute("draggable", true);
-      logo.addEventListener("dragstart", (event) => {
-        event.dataTransfer.setData("text/plain", logo.src);
-      });
+  gsap.from(title, {
+    scrollTrigger: {
+      trigger: testYourselfSection,
+      start: "top bottom",
+      toggleActions: "play none none none",
+      // markers: true,
+    },
+    opacity: 0,
+    y: -50,
+    duration: 1,
+  });
+
+  gsap.from(paragraph, {
+    scrollTrigger: {
+      trigger: paragraph,
+      start: "top bottom",
+      toggleActions: "play none none none",
+      // markers: true,
+    },
+    opacity: 0,
+    y: -30,
+    duration: 1,
+    delay: 0.3,
+  });
+
+  gsap.from(map, {
+    scrollTrigger: {
+      trigger: map,
+      start: "top bottom",
+      toggleActions: "play none none none",
+      // markers: true,
+    },
+    opacity: 0,
+    x: -100,
+    duration: 1,
+    delay: 0.5,
+  });
+
+  infoBlocks.forEach((block, index) => {
+    gsap.from(block, {
+      scrollTrigger: {
+        trigger: block,
+        start: "top bottom",
+        toggleActions: "play none none none",
+        // markers: true,
+      },
+      opacity: 0,
+      x: 100,
+      duration: 1,
+      delay: 0.6 + index * 0.2,
     });
+  });
 
-    agreementDropZones.forEach((zone) => {
-      zone.addEventListener("dragover", (event) => {
-        event.preventDefault();
-      });
+  gsap.from(shareButton, {
+    scrollTrigger: {
+      trigger: shareButton,
+      start: "top bottom",
+      toggleActions: "play none none none",
+      // markers: true,
+    },
+    opacity: 0,
+    y: 30,
+    duration: 1,
+    delay: 1,
+  });
+};
 
-      zone.addEventListener("drop", (event) => {
-        event.preventDefault();
-        const logoSrc = event.dataTransfer.getData("text/plain");
-        zone.style.backgroundImage = `url(${logoSrc})`;
-        zone.style.backgroundSize = "contain";
-        zone.style.backgroundRepeat = "no-repeat";
-        zone.style.backgroundPosition = "center";
-      });
+const animateFinalSection = () => {
+  const finalSection = document.querySelector(".final-section");
+  const headings = finalSection.querySelectorAll("h2, h3");
+  const discountText = finalSection.querySelector(".discount-text");
+  const qrCode = finalSection.querySelector(".qr-code img");
+
+  headings.forEach((heading, index) => {
+    gsap.from(heading, {
+      scrollTrigger: {
+        trigger: heading,
+        start: "top bottom",
+        toggleActions: "restart none none none",
+        // markers: true,
+      },
+      opacity: 0,
+      y: -30,
+      duration: 0.5,
+      delay: index * 0.3, 
     });
-  }
+  });
+
+  // Discount Text Animation
+  gsap.from(discountText, {
+    scrollTrigger: {
+      trigger: discountText,
+      start: "top bottom",
+      toggleActions: "restart none none none",
+      // markers: true,
+    },
+    opacity: 0,
+    scale: 0.5,
+    duration: 0.5,
+    delay: 0.6,
+  });
+
+  // QR Code Animation
+  gsap.from(qrCode, {
+    scrollTrigger: {
+      trigger: qrCode,
+      start: "top bottom",
+      toggleActions: "restart none none none",
+      // markers: true,
+    },
+    opacity: 0,
+    x: 100,
+    duration: 0.5,
+    delay: 0.5,
+  });
 };
 
 const setupDragAndDrop = () => {
   const draggables = document.querySelectorAll(".shapes div");
   const dropZones = document.querySelectorAll(".drop-area div");
   const dropZoneIds = ["france", "belgium", "germany", "netherlands", "uk"];
-
-  dropZones.forEach((zone, index) => {
-    zone.id = "drop-" + dropZoneIds[index];
-  });
+  const contractButton = document.querySelector(".contract-button");
+  let animationPlayed = false;
 
   draggables.forEach((draggable) => {
     draggable.addEventListener("dragstart", (event) => {
@@ -264,14 +477,17 @@ const setupDragAndDrop = () => {
   });
 
   const checkShapesPlacement = () => {
-    const allCorrect = Array.from(dropZones).every((zone, index) => {
-      const child = zone.firstChild;
-      return child && child.id === dropZoneIds[index];
+    const allCorrect = dropZoneIds.every((id, index) => {
+      const zone = document.getElementById("drop-" + id);
+      if (!zone) {
+        console.error("Drop zone not found:", "drop-" + id);
+        return false;
+      }
+      const child = zone.firstElementChild;
+      return child && child.id === id;
     });
-
-    if (allCorrect) {
-      document.querySelector(".contract-button").style.display = "block";
-    }
+    contractButton.style.display = allCorrect ? "block" : "none";
+    console.log(allCorrect);
   };
 
   dropZones.forEach((zone, index) => {
@@ -281,15 +497,34 @@ const setupDragAndDrop = () => {
 
     zone.addEventListener("drop", (event) => {
       event.preventDefault();
-      const data = event.dataTransfer.getData("text");
-      const element = document.getElementById(data);
-      if (!zone.hasChildNodes()) {
-        zone.appendChild(element);
+      const draggableId = event.dataTransfer.getData("text");
+      const draggableElement = document.getElementById(draggableId);
+
+      if (!zone.firstChild) {
+        zone.appendChild(draggableElement);
         zone.style.border =
-          data === dropZoneIds[index] ? "2px solid green" : "2px solid red";
-        checkShapesPlacement();
+          draggableId === dropZoneIds[index]
+            ? "3px solid green"
+            : "3px solid red";
       }
+
+      checkShapesPlacement();
     });
+  });
+
+  contractButton.addEventListener("click", () => {
+    if (!animationPlayed) {
+      lottie.loadAnimation({
+        container: document.querySelector(".signature-animation"),
+        renderer: "svg",
+        loop: false,
+        autoplay: true,
+        path: "assets/animations/signature.json",
+      });
+      animationPlayed = true;
+      contractButton.disabled = true;
+      contractButton.style.opacity = 0.5;
+    }
   });
 };
 
@@ -311,8 +546,7 @@ const mobileInteraction = () => {
       if (!targetZone.hasChildNodes()) {
         targetZone.appendChild(draggable);
         targetZone.style.border = "2px solid green";
-        updatePbkalLetters(index, true); // Update PBKAL letters
-        checkMobileShapesPlacement();
+        updatePbkalLetters(index, true);
       }
     });
   });
@@ -322,18 +556,6 @@ const mobileInteraction = () => {
       pbkalLetters[index].style.color = "#F37021";
     } else {
       pbkalLetters[index].style.color = "";
-    }
-  };
-
-  const checkMobileShapesPlacement = () => {
-    const allCorrect = Array.from(mobileDropZones).every((zone, index) => {
-      const child = zone.firstChild;
-      return child && child.id === dropZoneIds[index];
-    });
-
-    if (allCorrect) {
-      document.querySelector(".mobile-document-section .button").style.display =
-        "block";
     }
   };
 };
@@ -483,5 +705,15 @@ const mobileAnimation = () => {
     path: "assets/animations/mobile-animation.json",
   });
 };
+
+// const signatureAnimation = () => {
+//   lottie.loadAnimation({
+//     container: document.querySelector(".signature-animation"),
+//     renderer: "svg",
+//     loop: false,
+//     autoplay: true,
+//     path: "assets/animations/signature.json",
+//   });
+// };
 
 init();
