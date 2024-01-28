@@ -20,8 +20,8 @@ const init = () => {
   animateOpinionCards();
   animateText();
   animateCompanyStructure();
+  // signatureAnimation();
 };
-
 
 const animateText = () => {
   const text = document.querySelector(".history-text");
@@ -182,7 +182,7 @@ const animateEvents = () => {
           scrollTrigger: {
             trigger: block,
             start: "top 90%",
-            end: "bottom 60%",
+            end: "bottom 70%",
             scrub: true,
             // markers: true,
           },
@@ -285,10 +285,8 @@ const setupDragAndDrop = () => {
   const draggables = document.querySelectorAll(".shapes div");
   const dropZones = document.querySelectorAll(".drop-area div");
   const dropZoneIds = ["france", "belgium", "germany", "netherlands", "uk"];
-
-  dropZones.forEach((zone, index) => {
-    zone.id = "drop-" + dropZoneIds[index];
-  });
+  const contractButton = document.querySelector(".contract-button");
+  const signatureAnimation = document.querySelector(".signature-animation");
 
   draggables.forEach((draggable) => {
     draggable.addEventListener("dragstart", (event) => {
@@ -297,14 +295,17 @@ const setupDragAndDrop = () => {
   });
 
   const checkShapesPlacement = () => {
-    const allCorrect = Array.from(dropZones).every((zone, index) => {
-      const child = zone.firstChild;
-      return child && child.id === dropZoneIds[index];
+    const allCorrect = dropZoneIds.every((id, index) => {
+      const zone = document.getElementById("drop-" + id);
+      if (!zone) {
+        console.error("Drop zone not found:", "drop-" + id);
+        return false;
+      }
+      const child = zone.firstElementChild;
+      return child && child.id === id;
     });
-
-    if (allCorrect) {
-      document.querySelector(".contract-button").style.display = "block";
-    }
+    contractButton.style.display = allCorrect ? "block" : "none";
+    console.log(allCorrect);
   };
 
   dropZones.forEach((zone, index) => {
@@ -314,14 +315,28 @@ const setupDragAndDrop = () => {
 
     zone.addEventListener("drop", (event) => {
       event.preventDefault();
-      const data = event.dataTransfer.getData("text");
-      const element = document.getElementById(data);
-      if (!zone.hasChildNodes()) {
-        zone.appendChild(element);
+      const draggableId = event.dataTransfer.getData("text");
+      const draggableElement = document.getElementById(draggableId);
+
+      if (!zone.firstChild) {
+        zone.appendChild(draggableElement);
         zone.style.border =
-          data === dropZoneIds[index] ? "2px solid green" : "2px solid red";
-        checkShapesPlacement();
+          draggableId === dropZoneIds[index]
+            ? "3px solid green"
+            : "3px solid red";
       }
+
+      checkShapesPlacement();
+    });
+  });
+
+  contractButton.addEventListener("click", () => {
+    lottie.loadAnimation({
+      container: document.querySelector(".signature-animation"),
+      renderer: "svg",
+      loop: false,
+      autoplay: true,
+      path: "assets/animations/signature.json",
     });
   });
 };
@@ -345,7 +360,7 @@ const mobileInteraction = () => {
         targetZone.appendChild(draggable);
         targetZone.style.border = "2px solid green";
         updatePbkalLetters(index, true);
-        checkMobileShapesPlacement();
+        // checkMobileShapesPlacement();
       }
     });
   });
@@ -358,17 +373,17 @@ const mobileInteraction = () => {
     }
   };
 
-  const checkMobileShapesPlacement = () => {
-    const allCorrect = Array.from(mobileDropZones).every((zone, index) => {
-      const child = zone.firstChild;
-      return child && child.id === dropZoneIds[index];
-    });
+  // const checkMobileShapesPlacement = () => {
+  //   const allCorrect = Array.from(mobileDropZones).every((zone, index) => {
+  //     const child = zone.firstChild;
+  //     return child && child.id === dropZoneIds[index];
+  //   });
 
-    if (allCorrect) {
-      document.querySelector(".mobile-document-section .button").style.display =
-        "block";
-    }
-  };
+  //   if (allCorrect) {
+  //     document.querySelector(".mobile-document-section .button").style.display =
+  //       "block";
+  //   }
+  // };
 };
 
 const map = () => {
@@ -516,5 +531,15 @@ const mobileAnimation = () => {
     path: "assets/animations/mobile-animation.json",
   });
 };
+
+// const signatureAnimation = () => {
+//   lottie.loadAnimation({
+//     container: document.querySelector(".signature-animation"),
+//     renderer: "svg",
+//     loop: false,
+//     autoplay: true,
+//     path: "assets/animations/signature.json",
+//   });
+// };
 
 init();

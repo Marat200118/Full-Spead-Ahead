@@ -129,6 +129,7 @@ body {
   color: var(--light-color);
   background-color: var(--orange);
   cursor: pointer;
+  max-width: 9rem;
   transition: all 0.25s;
 }
 
@@ -231,6 +232,7 @@ section {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  gap: 2rem;
 }
 
 .date-and-signature p {
@@ -241,7 +243,8 @@ section {
 .document-header {
   display: flex;
   flex-direction: column;
-  gap: 3rem;
+  align-items: center;
+  gap: 2rem;
 }
 
 .pbkal {
@@ -323,6 +326,10 @@ section {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.visible {
+  display: block !important;
 }
 
 .big-info p {
@@ -749,6 +756,10 @@ section {
     margin-bottom: -5rem;
   }
 
+  .contract-button {
+    display: none;
+  }
+
   .landing {
     display: block;
   }
@@ -896,6 +907,7 @@ section {
   .invetment-flex {
     display: flex;
     flex-direction: row;
+    gap: 1rem;
     justify-content: space-around;
     align-items: center;
     background-color: var(--light-color);
@@ -1126,13 +1138,16 @@ section {
     flex-direction: column;
     align-items: flex-start;
     gap: 0;
-  }
+  } 
 
   .animation-text {
     justify-content: center;
     /* margin-top: 3rem; */
   }
   
+  .signature-animation {
+    width: 50%;
+  }
 
 
 
@@ -1167,6 +1182,7 @@ section {
     margin-top: 3rem;
   }
 
+
   /* .events-block {
     display: flex;
     flex-direction: column;
@@ -1175,6 +1191,33 @@ section {
     gap: 3rem;
     height: 100vh;
   } */
+}
+
+@media (min-width: 1201px) {
+  .investment-img {
+    max-width: 40vw;
+  }
+
+  .ahead-animation {
+    margin-top: 0;
+    width: 80%;
+  }
+}
 
 
+@media (min-width: 1440px) {
+  .investment-img {
+    max-width: 25vw;
+  }
+
+  .event-content {
+    justify-content: space-evenly;
+  }
+
+}
+
+@media (min-width: 1440px) {
+  .investment-img {
+    max-width: 35vw;
+  }
 }
