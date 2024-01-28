@@ -21,6 +21,8 @@ const init = () => {
   animateText();
   animateCompanyStructure();
   animateTextSection();
+  animateTestYourselfSection();
+  animateFinalSection();
 };
 
 const animateTextSection = () => {
@@ -33,7 +35,7 @@ const animateTextSection = () => {
     gsap.from(sentence, {
       scrollTrigger: {
         trigger: sentence,
-        start: "top bottom", 
+        start: "top bottom",
         end: "bottom top",
         toggleActions: "play none none reverse",
         // markers: true,
@@ -333,6 +335,131 @@ const animateOpinionCards = () => {
       },
       "<"
     ); // "<" means this animation will start at the same time as the previous one
+  });
+};
+
+const animateTestYourselfSection = () => {
+  const testYourselfSection = document.querySelector(".test-yourself");
+  const title = testYourselfSection.querySelector("h2");
+  const paragraph = testYourselfSection.querySelector(".test-yourself-p");
+  const map = testYourselfSection.querySelector(".map");
+  const infoBlocks = testYourselfSection.querySelectorAll(".information-block");
+  const shareButton = testYourselfSection.querySelector(".share-button");
+
+  gsap.from(title, {
+    scrollTrigger: {
+      trigger: testYourselfSection,
+      start: "top bottom",
+      toggleActions: "play none none none",
+      // markers: true,
+    },
+    opacity: 0,
+    y: -50,
+    duration: 1,
+  });
+
+  gsap.from(paragraph, {
+    scrollTrigger: {
+      trigger: paragraph,
+      start: "top bottom",
+      toggleActions: "play none none none",
+      // markers: true,
+    },
+    opacity: 0,
+    y: -30,
+    duration: 1,
+    delay: 0.3,
+  });
+
+  gsap.from(map, {
+    scrollTrigger: {
+      trigger: map,
+      start: "top bottom",
+      toggleActions: "play none none none",
+      // markers: true,
+    },
+    opacity: 0,
+    x: -100,
+    duration: 1,
+    delay: 0.5,
+  });
+
+  infoBlocks.forEach((block, index) => {
+    gsap.from(block, {
+      scrollTrigger: {
+        trigger: block,
+        start: "top bottom",
+        toggleActions: "play none none none",
+        // markers: true,
+      },
+      opacity: 0,
+      x: 100,
+      duration: 1,
+      delay: 0.6 + index * 0.2,
+    });
+  });
+
+  gsap.from(shareButton, {
+    scrollTrigger: {
+      trigger: shareButton,
+      start: "top bottom",
+      toggleActions: "play none none none",
+      // markers: true,
+    },
+    opacity: 0,
+    y: 30,
+    duration: 1,
+    delay: 1,
+  });
+};
+
+const animateFinalSection = () => {
+  const finalSection = document.querySelector(".final-section");
+  const headings = finalSection.querySelectorAll("h2, h3");
+  const discountText = finalSection.querySelector(".discount-text");
+  const qrCode = finalSection.querySelector(".qr-code img");
+
+  headings.forEach((heading, index) => {
+    gsap.from(heading, {
+      scrollTrigger: {
+        trigger: heading,
+        start: "top bottom",
+        toggleActions: "restart none none none",
+        // markers: true,
+      },
+      opacity: 0,
+      y: -30,
+      duration: 0.5,
+      delay: index * 0.3, 
+    });
+  });
+
+  // Discount Text Animation
+  gsap.from(discountText, {
+    scrollTrigger: {
+      trigger: discountText,
+      start: "top bottom",
+      toggleActions: "restart none none none",
+      // markers: true,
+    },
+    opacity: 0,
+    scale: 0.5,
+    duration: 0.5,
+    delay: 0.6,
+  });
+
+  // QR Code Animation
+  gsap.from(qrCode, {
+    scrollTrigger: {
+      trigger: qrCode,
+      start: "top bottom",
+      toggleActions: "restart none none none",
+      // markers: true,
+    },
+    opacity: 0,
+    x: 100,
+    duration: 0.5,
+    delay: 0.5,
   });
 };
 

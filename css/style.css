@@ -276,10 +276,6 @@ section {
   justify-content: space-around;
 }
 
-.pbkal-section {
-  display: none;
-}
-
 .opinions, .events {
   background-color: var(--dark-color);
   color: var(--light-color);
@@ -577,7 +573,6 @@ section {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  padding: 2rem;
 }
 
 .practicals {
