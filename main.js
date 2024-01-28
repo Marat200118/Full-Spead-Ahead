@@ -20,7 +20,49 @@ const init = () => {
   animateOpinionCards();
   animateText();
   animateCompanyStructure();
-  // signatureAnimation();
+  animateTextSection();
+};
+
+const animateTextSection = () => {
+  const textSection = document.querySelector(".text-section");
+  const sentences = textSection.querySelectorAll("p");
+  const animatedDigits = textSection.querySelectorAll(".animated-digit");
+
+  // Animate each sentence
+  sentences.forEach((sentence, index) => {
+    gsap.from(sentence, {
+      scrollTrigger: {
+        trigger: sentence,
+        start: "top bottom", 
+        end: "bottom top",
+        toggleActions: "play none none reverse",
+        // markers: true,
+      },
+      opacity: 0,
+      y: 20,
+      duration: 1,
+      ease: "power2.out",
+      delay: index * 0.3, // Stagger the start time of each sentence
+    });
+  });
+
+  // Animate numbers
+  animatedDigits.forEach((digit) => {
+    const endValue = parseInt(digit.textContent.replace(/\s/g, ""), 10);
+    gsap.from(digit, {
+      scrollTrigger: {
+        trigger: digit,
+        start: "top 70%",
+        toggleActions: "play none none reverse",
+        // markers: true,
+      },
+      duration: 2,
+      text: endValue,
+      ease: "power3.inOut",
+      snap: { textContent: 1 },
+      stagger: 0.5,
+    });
+  });
 };
 
 const animateText = () => {
@@ -57,7 +99,7 @@ const animateCompanyStructure = () => {
           start: "top 80%",
           end: "bottom top",
           toggleActions: "play none none reverse",
-          markers: true,
+          // markers: true,
         },
       });
 
@@ -261,23 +303,36 @@ const animateEvents = () => {
 
 const animateOpinionCards = () => {
   const opinionCards = gsap.utils.toArray(".opinion-card");
+  const symbols = gsap.utils.toArray(".opinion-symbol");
 
-  opinionCards.forEach((card) => {
+  opinionCards.forEach((card, index) => {
     const animationParams = card.classList.contains("against-opinion")
       ? { x: -200, rotation: -10, backgroundColor: "red" }
       : { x: 200, rotation: 10, backgroundColor: "green" };
 
-    gsap.to(card, {
-      ...animationParams,
+    const symbol = symbols[index];
+
+    const tl = gsap.timeline({
       scrollTrigger: {
         trigger: card,
-        start: "top 30%",
+        start: "top 20%",
         toggleActions: "play none none reverse",
         // markers: true,
       },
-      ease: "power2.in",
-      onCompleteParams: [card],
     });
+
+    tl.to(card, {
+      ...animationParams,
+      ease: "power2.in",
+    }).to(
+      symbol,
+      {
+        opacity: 1,
+        duration: 0.5,
+        ease: "power2.in",
+      },
+      "<"
+    ); // "<" means this animation will start at the same time as the previous one
   });
 };
 
@@ -286,7 +341,7 @@ const setupDragAndDrop = () => {
   const dropZones = document.querySelectorAll(".drop-area div");
   const dropZoneIds = ["france", "belgium", "germany", "netherlands", "uk"];
   const contractButton = document.querySelector(".contract-button");
-  const signatureAnimation = document.querySelector(".signature-animation");
+  let animationPlayed = false;
 
   draggables.forEach((draggable) => {
     draggable.addEventListener("dragstart", (event) => {
@@ -331,13 +386,18 @@ const setupDragAndDrop = () => {
   });
 
   contractButton.addEventListener("click", () => {
-    lottie.loadAnimation({
-      container: document.querySelector(".signature-animation"),
-      renderer: "svg",
-      loop: false,
-      autoplay: true,
-      path: "assets/animations/signature.json",
-    });
+    if (!animationPlayed) {
+      lottie.loadAnimation({
+        container: document.querySelector(".signature-animation"),
+        renderer: "svg",
+        loop: false,
+        autoplay: true,
+        path: "assets/animations/signature.json",
+      });
+      animationPlayed = true;
+      contractButton.disabled = true;
+      contractButton.style.opacity = 0.5;
+    }
   });
 };
 
@@ -360,7 +420,6 @@ const mobileInteraction = () => {
         targetZone.appendChild(draggable);
         targetZone.style.border = "2px solid green";
         updatePbkalLetters(index, true);
-        // checkMobileShapesPlacement();
       }
     });
   });
@@ -372,18 +431,6 @@ const mobileInteraction = () => {
       pbkalLetters[index].style.color = "";
     }
   };
-
-  // const checkMobileShapesPlacement = () => {
-  //   const allCorrect = Array.from(mobileDropZones).every((zone, index) => {
-  //     const child = zone.firstChild;
-  //     return child && child.id === dropZoneIds[index];
-  //   });
-
-  //   if (allCorrect) {
-  //     document.querySelector(".mobile-document-section .button").style.display =
-  //       "block";
-  //   }
-  // };
 };
 
 const map = () => {

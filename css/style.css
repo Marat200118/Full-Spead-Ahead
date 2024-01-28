@@ -121,6 +121,7 @@ body {
 
 .button {
   border-radius: .2rem;
+  text-align: center;
   border: 1px solid transparent;
   padding: 0.7em 1.3em;
   font-size: 1em;
@@ -131,6 +132,26 @@ body {
   cursor: pointer;
   max-width: 9rem;
   transition: all 0.25s;
+}
+
+.opinion-symbol {
+  opacity: 0;
+  /* display: block !important; */
+}
+
+.info-with-btn {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: left;
+  gap: 2rem;
+}
+
+.opinion-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 }
 
 section {
@@ -946,6 +967,8 @@ section {
     width: 30rem;
     height: 30rem;
     margin: auto;
+    margin-top: 5rem;
+    margin-bottom: 3rem;
   }
 
   .circle-container {
