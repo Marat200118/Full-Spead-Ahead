@@ -60,8 +60,8 @@ a {
   text-decoration: inherit;
 }
 
-a:hover {
-
+noscript {
+  display: none;
 }
 
 body {
@@ -134,9 +134,15 @@ body {
   transition: all 0.25s;
 }
 
+.button:hover {
+  cursor: pointer !important;
+  background-color: var(--light-color);
+  color: var(--orange);
+  border: 1px solid var(--orange);
+}
+
 .opinion-symbol {
   opacity: 0;
-  /* display: block !important; */
 }
 
 .info-with-btn {
@@ -243,6 +249,10 @@ section {
   transition: border-color 0.3s;
 }
 
+.hidden {
+  display: none;
+}
+
 .drop-area div img {
   max-width: 100%; 
   max-height: 100%; 
@@ -312,12 +322,10 @@ section {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  /* align-items: center; */
   margin-top: 3rem;
   margin-bottom: 3rem;
   max-width: 20rem;
 }
-
 
 .vector {
   margin-top: 3rem;
@@ -382,7 +390,6 @@ section {
   margin-bottom: 3rem;
 }
 
-
 .agreement p {
   max-width: 30ch;
   color: var(--dark-color);
@@ -405,7 +412,7 @@ section {
 .investments {
   background-color: var(--dark-color);
   color: var(--light-color);
-  overflow: hidden; /* Prevent scrollbar on the section itself */
+  overflow: hidden;
   position: relative;
 }
 
@@ -415,9 +422,6 @@ section {
   align-items: center;
   margin-top: 3rem;
   margin-bottom: 3rem;
-  /* background-image: url("../assets/svg/rails-horizontal.svg");
-  background-repeat: repeat-x;
-  background-size: 20rem; */
 }
 
 .investment-item p {
@@ -436,7 +440,6 @@ section {
 }
 
 .test-yourself {
-  /* display: none; */
   color: var(--dark-color);
 }
 
@@ -444,7 +447,6 @@ section {
   display: flex;
   flex-direction: column;
 }
-
 
 .information-block p {
   margin-top: 0;
@@ -456,7 +458,6 @@ section {
   width: 100%;
   height: 85vw;
 }
-
 
 .large-paragraph {
   font-weight: 600 !important;
@@ -515,7 +516,6 @@ section {
   margin-top: 1.2rem;
   margin-bottom: 1.2rem;
 }
-
 
 .animated-digit {
   font-size: clamp(2rem, 8vw, 4rem);
@@ -593,6 +593,13 @@ section {
   margin-bottom: 2rem;
 }
 
+.practical a {
+  color: var(--light-color);
+  text-decoration: none;
+  font-family: var(--helvetica);
+  font-size: var(--font-size-paragraph);
+}
+
 .practical p {
   margin-top: .1rem;
   margin-bottom: .1rem;
@@ -629,12 +636,6 @@ section {
   justify-content: space-around;
   align-items: center;
 }
-
-/* .animation-text {
-  position: absolute;
-  left: 10rem;
-  top: -2rem;
-} */
 
 .animation-text {
   display: flex;
@@ -709,7 +710,8 @@ section {
   transition: all 0.25s;
 }
 
-.stories-links a:hover {
+.stories-link a:hover {
+  cursor: pointer !important;
   color: var(--light-color);
 }
 
@@ -778,9 +780,12 @@ section {
     display: none;
   }
 
+  noscript {
+    display: block;
+  }
+
   .map {
     width: 50vw;
-    /* width: clamp(30rem, 50vw, 60rem); */
     height: 40vw;
   }
 
@@ -805,18 +810,11 @@ section {
     background-color: var(--light-color);
     padding: 2.5rem;
     border: 1px solid var(--dark-color);
-    box-shadow: 20px 20px 15px var(--dark-color);
+    box-shadow: 20px 20px 5px rgb(165, 165, 165);
     display: flex;
     flex-direction: column;
     gap: 3rem;
   }
-
-  /* .opinions__rails {
-    position: absolute;
-    z-index: 1;
-    bottom: 0;
-    top: 4rem;
-  } */
 
   .investment-left p {
     max-width: clamp(45ch, 50vw, 50ch);
@@ -833,22 +831,10 @@ section {
     align-items: center;
   }
 
-  /* .event-content {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    width: 100cqw;
-    align-items: center;
-  } */
-
   .events-text {
     max-width: 50ch;
     margin: 0 auto;
   }
-
-  /* .separator {
-    display: none;
-  } */
 
   .event-header {
     display: flex;
@@ -953,7 +939,6 @@ section {
     display: none;
   }
 
-
   .carousel-container {
     border: 3px solid var(--orange);
     border-radius: 50%;
@@ -977,6 +962,8 @@ section {
   .radio {
     display: block;
     color: var(--orange);
+    border: 1px solid var(--orange);
+    outline: var(--orange);
     height: 1.5rem;
     width: 1.5rem;
     margin: 0;
@@ -1155,18 +1142,12 @@ section {
 
   .animation-text {
     justify-content: center;
-    /* margin-top: 3rem; */
   }
   
   .signature-animation {
     width: 50%;
   }
-
-
-
-
 }
-
 
 @media (min-width: 1024px) {
   .text-content {
@@ -1205,17 +1186,6 @@ section {
   .share-button {
     margin-top: 3rem;
   }
-
-
-
-  /* .events-block {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 3rem;
-    height: 100vh;
-  } */
 }
 
 @media (min-width: 1201px) {
