@@ -430,7 +430,7 @@ const animateFinalSection = () => {
       opacity: 0,
       y: -30,
       duration: 0.5,
-      delay: index * 0.3, 
+      delay: index * 0.3,
     });
   });
 
@@ -562,7 +562,9 @@ const mobileInteraction = () => {
 
 const map = () => {
   const center = [51.332871, 12.522164];
-  const map = L.map("map").setView(center, 5);
+  const map = L.map("map", {
+    scrollWheelZoom: false,
+  }).setView(center, 5);
 
   L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
     maxZoom: 18,
