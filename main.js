@@ -30,7 +30,6 @@ const animateTextSection = () => {
   const sentences = textSection.querySelectorAll("p");
   const animatedDigits = textSection.querySelectorAll(".animated-digit");
 
-  // Animate each sentence
   sentences.forEach((sentence, index) => {
     gsap.from(sentence, {
       scrollTrigger: {
@@ -38,17 +37,15 @@ const animateTextSection = () => {
         start: "top bottom",
         end: "bottom top",
         toggleActions: "play none none reverse",
-        // markers: true,
       },
       opacity: 0,
       y: 20,
       duration: 1,
       ease: "power2.out",
-      delay: index * 0.3, // Stagger the start time of each sentence
+      delay: index * 0.3,
     });
   });
 
-  // Animate numbers
   animatedDigits.forEach((digit) => {
     const endValue = parseInt(digit.textContent.replace(/\s/g, ""), 10);
     gsap.from(digit, {
@@ -56,7 +53,6 @@ const animateTextSection = () => {
         trigger: digit,
         start: "top 70%",
         toggleActions: "play none none reverse",
-        // markers: true,
       },
       duration: 2,
       text: endValue,
@@ -78,7 +74,6 @@ const animateText = () => {
       start: "top 60%",
       end: "bottom 40%",
       scrub: true,
-      // markers: true,
     },
     color: "#222831",
     stagger: 0.05,
@@ -101,7 +96,6 @@ const animateCompanyStructure = () => {
           start: "top 80%",
           end: "bottom top",
           toggleActions: "play none none reverse",
-          // markers: true,
         },
       });
 
@@ -182,7 +176,6 @@ const InvestmentAnimation = () => {
           start: "top 50%",
           end: "bottom top",
           toggleActions: "play none none reverse",
-          // markers: true,
         },
       });
 
@@ -228,7 +221,6 @@ const animateEvents = () => {
             start: "top 90%",
             end: "bottom 70%",
             scrub: true,
-            // markers: true,
           },
         })
         .from(header, {
@@ -268,7 +260,6 @@ const animateEvents = () => {
             start: "top bottom",
             end: "bottom bottom",
             scrub: true,
-            // markers: true,
           },
         })
         .from(header, {
@@ -319,7 +310,6 @@ const animateOpinionCards = () => {
         trigger: card,
         start: "top 20%",
         toggleActions: "play none none reverse",
-        // markers: true,
       },
     });
 
@@ -334,7 +324,7 @@ const animateOpinionCards = () => {
         ease: "power2.in",
       },
       "<"
-    ); // "<" means this animation will start at the same time as the previous one
+    );
   });
 };
 
@@ -351,7 +341,6 @@ const animateTestYourselfSection = () => {
       trigger: testYourselfSection,
       start: "top bottom",
       toggleActions: "play none none none",
-      // markers: true,
     },
     opacity: 0,
     y: -50,
@@ -425,7 +414,6 @@ const animateFinalSection = () => {
         trigger: heading,
         start: "top bottom",
         toggleActions: "restart none none none",
-        // markers: true,
       },
       opacity: 0,
       y: -30,
@@ -434,13 +422,11 @@ const animateFinalSection = () => {
     });
   });
 
-  // Discount Text Animation
   gsap.from(discountText, {
     scrollTrigger: {
       trigger: discountText,
       start: "top bottom",
       toggleActions: "restart none none none",
-      // markers: true,
     },
     opacity: 0,
     scale: 0.5,
@@ -448,13 +434,11 @@ const animateFinalSection = () => {
     delay: 0.6,
   });
 
-  // QR Code Animation
   gsap.from(qrCode, {
     scrollTrigger: {
       trigger: qrCode,
       start: "top bottom",
       toggleActions: "restart none none none",
-      // markers: true,
     },
     opacity: 0,
     x: 100,
@@ -707,15 +691,5 @@ const mobileAnimation = () => {
     path: "assets/animations/mobile-animation.json",
   });
 };
-
-// const signatureAnimation = () => {
-//   lottie.loadAnimation({
-//     container: document.querySelector(".signature-animation"),
-//     renderer: "svg",
-//     loop: false,
-//     autoplay: true,
-//     path: "assets/animations/signature.json",
-//   });
-// };
 
 init();
