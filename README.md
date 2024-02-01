@@ -1,6 +1,7 @@
 # Full Speed Ahead: Interactive Story - Train World
 
 "Full Speed Ahead" is an interactive web experience that showcases the history and evolution of Belgium's railway network, with a focus on the High-Speed Line (HSL) development. The project aims to immerse visitors in the story of Belgium's railways through interactive elements, animations, and compelling narratives.
+![Screenshot 2024-01-29 at 10 57 06](https://github.com/Marat200118/Full-Spead-Ahead/assets/37581663/b3d540b4-c3fe-491c-b7c9-e3e0a59de46d)
 
 ## Overview
 
